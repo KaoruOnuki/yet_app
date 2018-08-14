@@ -4,4 +4,5 @@ Rails.application.routes.draw do
     post :confirm, on: :collection
   end
   resources :users
+  resources :sessions
 end

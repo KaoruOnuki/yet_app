@@ -1,5 +1,7 @@
 class WordsController < ApplicationController
+  before_action :your_page
   before_action :set_word, only: [:show, :edit, :update, :destroy]
+
   def index
     @words = Word.all
   end
@@ -52,5 +54,11 @@ class WordsController < ApplicationController
 
   def set_word
     @word = Word.find(params[:id])
+  end
+
+  def your_page
+    unless logged_in?
+      redirect_to new_session_path
+    end
   end
 end
