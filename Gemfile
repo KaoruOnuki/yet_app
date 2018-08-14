@@ -15,6 +15,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'bootsnap', '>= 1.1.0', require: false
 
+gem 'bcrypt', '3.1.11'
 gem 'dotenv-rails'
 
 group :development, :test do
