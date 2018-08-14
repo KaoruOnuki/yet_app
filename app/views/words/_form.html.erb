@@ -1,0 +1,26 @@
+<%= form_with(model: @word, local: true, url: choose_new_or_edit) do |f| %>
+  <% if @word.errors.any? %>
+    <div id = "error_explanation">
+      <h2><%= @word.errors.count %>件のエラーあり</h2>
+      <ul>
+        <% @word.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="word_term">
+    <%= f.label :term %>
+    <%= f.text_field :term %>
+  </div>
+
+  <div class="word_memo">
+    <%= f.label :memo %>
+    <%= f.text_field :memo %>
+  </div>
+
+  <%= f.submit "登録" %>
+<% end %>
+
+<%= link_to "戻る", root_path %>

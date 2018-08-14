@@ -1,0 +1,20 @@
+<h1>登録単語一覧</h1>
+<p><%= notice %></p>
+<table>
+  <tr>
+    <th>単語</th>
+    <th>説明</th>
+  </tr>
+
+  <% @words.each do |word| %>
+    <tr>
+      <td><%= word.term %></td>
+      <td><%= word.memo %></td>
+      <td><%= link_to '詳細', word_path(word.id) %></td>
+      <td><%= link_to '編集', edit_word_path(word.id) %></td>
+      <td><%= link_to '削除', word_path(word.id), method: :delete, data: {confirm: '本当に削除しますか？'} %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to '新しい単語の登録', new_word_path %>
