@@ -1,0 +1,15 @@
+<h1>登録確認</h1>
+<%= form_with(model: @word, url: words_path, local: true) do |f| %>
+  <%= f.hidden_field :term %>
+  <%= f.hidden_field :memo %>
+
+  <p>単語:<%= @word.term %></p>
+  <p>説明:<%= @word.memo %></p>
+  <%= f.submit "登録" %>
+<% end %>
+
+<%= form_with(model: @word, url: new_word_path, local: true, method: 'get') do |f| %>
+  <%= f.hidden_field :term %>
+  <%= f.hidden_field :memo %>
+  <%= f.submit "戻る", name: 'back' %>
+<% end %>
