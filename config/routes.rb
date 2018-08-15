@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "words#index"
+  root "users#new"
   resources :words do
     post :confirm, on: :collection
   end
