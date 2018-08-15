@@ -1,6 +1,6 @@
 class WordsController < ApplicationController
-  before_action :your_page
   before_action :set_word, only: [:show, :edit, :update, :destroy]
+  before_action :redirect_if_not_logged_in
 
   def index
     @words = Word.all
@@ -16,6 +16,7 @@ class WordsController < ApplicationController
 
   def create
     @word = Word.new(word_params)
+    @word.user_id = current_user.id
     if @word.save
       redirect_to words_path, notice: '単語を登録しました'
     else
@@ -44,6 +45,7 @@ class WordsController < ApplicationController
 
   def confirm
     @word = Word.new(word_params)
+    @word.user_id = current_user.id
     render :new if @word.invalid?
   end
 
@@ -54,11 +56,5 @@ class WordsController < ApplicationController
 
   def set_word
     @word = Word.find(params[:id])
-  end
-
-  def your_page
-    unless logged_in?
-      redirect_to new_session_path
-    end
   end
 end
