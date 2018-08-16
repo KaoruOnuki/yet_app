@@ -57,4 +57,8 @@ class WordsController < ApplicationController
   def set_word
     @word = Word.find(params[:id])
   end
+
+  def redirect_if_not_logged_in
+    redirect_to new_session_path if !logged_in?
+  end
 end

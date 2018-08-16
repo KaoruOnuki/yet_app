@@ -13,8 +13,10 @@
       <td><%= word.memo %></td>
       <td><%= word.user.name %></td>
       <td><%= link_to '詳細', word_path(word.id) %></td>
-      <td><%= link_to '編集', edit_word_path(word.id) %></td>
-      <td><%= link_to '削除', word_path(word.id), method: :delete, data: {confirm: '本当に削除しますか？'} %></td>
+      <% if word.user_id == current_user.id %>
+        <td><%= link_to '編集', edit_word_path(word.id) %></td>
+        <td><%= link_to '削除', word_path(word.id), method: :delete, data: {confirm: '本当に削除しますか？'} %></td>
+      <% end %>
     </tr>
   <% end %>
 </table>
