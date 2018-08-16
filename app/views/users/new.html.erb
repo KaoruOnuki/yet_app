@@ -1,23 +1,27 @@
-<h1>サインアップ</h1>
-<% if @user.errors.any? %>
-  <div id = "error_explanation">
-    <h2><%= @user.errors.count %>件のエラーあり</h2>
-    <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+<% if @user.present? %>
+  <h1>すでにサインアップしています</h1>
+<% else %>
+  <h1>サインアップ</h1>
+  <% if @user.errors.any? %>
+    <div id = "error_explanation">
+      <h2><%= @user.errors.count %>件のエラーあり</h2>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-<%= form_with(model: @user, local: true) do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :email %>
-  <%= f.email_field :email %>
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %>
-  <%= f.submit "サインアップ" %>
+  <%= form_with(model: @user, local: true) do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+    <%= f.submit "サインアップ" %>
+  <% end %>
 <% end %>
