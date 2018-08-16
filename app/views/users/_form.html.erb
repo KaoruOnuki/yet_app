@@ -1,0 +1,27 @@
+<% if logged_in? %>
+  <h1>プロフィール編集</h1>
+  <%= form_with(model: user, local: true) do |f| %>
+    <%= f.label :profile_picture %>
+    <%= image_tag(@user.profile_picture.url) if @user.profile_picture.url.present? %>
+    <%= f.file_field :profile_picture, id: :profile_picture %>
+    <%= f.hidden_field :profile_picture_cache %>
+    <%= f.submit "アップデート" %>
+  <% end %>
+<% else %>
+  <h1>サインアップ</h1>
+  <%= form_with(model: user, local: true) do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+    <%= f.label :profile_picture %>
+    <%= image_tag(@user.profile_picture.url) if @user.profile_picture.url.present? %>
+    <%= f.file_field :profile_picture, id: :profile_picture %>
+    <%= f.hidden_field :profile_picture_cache %>
+    <%= f.submit "サインアップ" %>
+  <% end %>
+<% end %>

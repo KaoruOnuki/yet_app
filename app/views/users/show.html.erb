@@ -1,4 +1,7 @@
 <h1><%= @user.name %>のページ</h1>
 <p>Eメールアドレス:<%= @user.email %></p>
 
+<%= image_tag @user.profile_picture.url %>
+<%= link_to "プロフィール編集", edit_user_path(@user.id) %>
+
 <%= link_to "単語一覧", words_path %>
