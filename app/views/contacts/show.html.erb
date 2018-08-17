@@ -1,0 +1,7 @@
+<h1>ありがとうございました</h1>
+  <p>お名前：<%= @contact.name %></p>
+  <p>メールアドレス：<%= @contact.email %></p>
+  <p>お問い合わせ内容：<%= @contact.content %></p>
+</div>
+<p><%= link_to "再編集する", edit_contact_path(@contact) %></p>
+<p><%= link_to "お問い合わせ履歴", contacts_path %></p>

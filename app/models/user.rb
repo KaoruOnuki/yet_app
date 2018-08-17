@@ -6,4 +6,6 @@ class User < ApplicationRecord
   has_many :words, dependent: :destroy
 
   mount_uploader :profile_picture, ProfilepictureUploader
+
+  has_many :contacts, dependent: :destroy
 end

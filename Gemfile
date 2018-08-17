@@ -19,6 +19,7 @@ gem 'bcrypt', '3.1.11'
 gem 'carrierwave'
 gem 'dotenv-rails'
 gem 'mini_magick'
+gem 'slack-api'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -28,6 +29,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'letter_opener_web'
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'spring'
