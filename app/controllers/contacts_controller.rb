@@ -28,6 +28,7 @@ class ContactsController < ApplicationController
     end
 
     if @contact.save
+      notify_to_slack
       ContactMailer.contact_mail(@contact).deliver
       redirect_to @contact, notice: 'お問い合わせを送信しました'
     else
@@ -61,5 +62,18 @@ class ContactsController < ApplicationController
 
   def your_contact
     redirect_to new_session_path if !logged_in?
+  end
+
+  def notify_to_slack
+    text = <<-EOC
+    -----------------------------
+      [#{Rails.env}] 新しいご意見が来ました。
+
+      ▼メールアドレス
+      #{@contact.email}
+      ▼内容
+      #{@contact.content}
+    EOC
+    Slack.chat_postMessage text: text, username: "お問い合わせのお知らせ", channel: "#test_kaoru"
   end
 end
