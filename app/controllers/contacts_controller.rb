@@ -30,7 +30,7 @@ class ContactsController < ApplicationController
     if @contact.save
       ContactMailer.contact_mail(@contact).deliver
       redirect_to @contact, notice: 'お問い合わせを送信しました'
-      Slack.chat_postMessage(text: '新しい本が作成されました！', username: 'Slack Bot', channel: '#test_kaoru2')
+      Slack.chat.postMessage(text: '新しい本が作成されました！', username: 'Slack Bot', channel: '#test_kaoru2')
     else
       render :new
     end
