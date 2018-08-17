@@ -30,7 +30,8 @@ class ContactsController < ApplicationController
     if @contact.save
       ContactMailer.contact_mail(@contact).deliver
       redirect_to @contact, notice: 'お問い合わせを送信しました'
-      Slack.chat_postMessage(text: '新しい本が作成されました！', username: 'Slack Bot', channel: '#test_kaoru2')
+      notify_to_slack
+      # Slack.chat_postMessage(text: '新しい本が作成されました！', username: 'Slack Bot', channel: '#test_kaoru2')
     else
       render :new
     end
@@ -64,16 +65,16 @@ class ContactsController < ApplicationController
     redirect_to new_session_path if !logged_in?
   end
 
-  # def notify_to_slack
-  #   text = <<-EOC
-  #   -----------------------------
-  #     [#{Rails.env}] 新しいご意見が来ました。
-  #
-  #     ▼メールアドレス
-  #     #{@contact.email}
-  #     ▼内容
-  #     #{@contact.content}
-  #   EOC
-  #   Slack.chat_postMessage text: text, username: "お問い合わせのお知らせ", channel: "#test_kaoru2"
-  # end
+  def notify_to_slack
+    text = <<-EOC
+    -----------------------------
+      [#{Rails.env}] 新しいご意見が来ました。
+
+      ▼メールアドレス
+      #{@contact.email}
+      ▼内容
+      #{@contact.content}
+    EOC
+    Slack.chat_postMessage text: text, username: "お問い合わせのお知らせ", channel: "#test_kaoru2"
+  end
 end
