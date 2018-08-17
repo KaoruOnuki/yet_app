@@ -74,6 +74,6 @@ class ContactsController < ApplicationController
       ▼内容
       #{@contact.content}
     EOC
-    Slack.chat_postMessage text: text, username: "お問い合わせのお知らせ", channel: "#test_kaoru"
+    Slack.chat_postMessage text: text, username: "お問い合わせのお知らせ", channel: "#test_kaoru2"
   end
 end
