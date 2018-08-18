@@ -31,7 +31,6 @@ class ContactsController < ApplicationController
       ContactMailer.contact_mail(@contact).deliver
       redirect_to @contact, notice: 'お問い合わせを送信しました'
       notify_to_slack
-      # Slack.chat_postMessage(text: '新しい本が作成されました！', username: 'Slack Bot', channel: '#test_kaoru2')
     else
       render :new
     end
@@ -68,7 +67,7 @@ class ContactsController < ApplicationController
   def notify_to_slack
     text = <<-EOC
     -----------------------------
-      [#{Rails.env}] 新しいご意見が来ました。
+      [#{Rails.env}] 新しいお問い合わせが来ました。
 
       ▼メールアドレス
       #{@contact.email}
