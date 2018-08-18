@@ -17,6 +17,8 @@
     <% if logged_in? %>
       <%= link_to "マイページ", user_path(current_user.id) %>
       <%= link_to "ログアウト", session_path(current_user.id), method: :delete %>
+      <%= link_to "メッセージ一覧", conversations_path %>
+      <%= link_to "ユーザー一覧", users_path %>
     <% else %>
       <%= link_to "サインアップ", new_user_path %>
       <%= link_to "ログイン", new_session_path %>

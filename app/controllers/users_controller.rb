@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
   before_action :correct_user?, only: [:show, :edit, :update]
+  def index
+    @users = User.all
+  end
+
   def new
     @user = User.new
   end
@@ -14,6 +18,9 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
+    @followings = Relationship.where(follower_id: @user.id)
+    @follows = Relationship.where(followed_id: @user.id)
   end
 
   def edit
