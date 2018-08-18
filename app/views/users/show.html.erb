@@ -6,3 +6,13 @@
 
 <%= link_to "単語一覧", words_path %>
 <%= link_to '新しいお問い合わせをする', new_contact_path %>
+
+<h2>フォローユーザー一覧</h2>
+<% @followings.each do |following| %>
+  <%= following.followed.name %>
+<% end %>
+
+<h2>フォロワーユーザー一覧</h2>
+<% @follows.each do |follow| %>
+  <%= follow.follower.name %>
+<% end %>
