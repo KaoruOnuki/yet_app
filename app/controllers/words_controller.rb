@@ -1,6 +1,6 @@
 class WordsController < ApplicationController
-  before_action :set_word, only: [:show, :edit, :update, :destroy]
   before_action :redirect_if_not_logged_in
+  before_action :set_word, only: [:show, :edit, :update, :destroy]
 
   def index
     @words = Word.all
@@ -56,9 +56,5 @@ class WordsController < ApplicationController
 
   def set_word
     @word = Word.find(params[:id])
-  end
-
-  def redirect_if_not_logged_in
-    redirect_to new_session_path if !logged_in?
   end
 end

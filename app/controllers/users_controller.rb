@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :correct_user?, only: [:show, :edit, :update]
+  before_action :redirect_if_wrong_user, only: [:show, :edit, :update]
   def index
     @users = User.all
   end
@@ -41,10 +41,5 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :profile_picture, :profile_picture_cache)
-  end
-
-  def correct_user?
-    @user = User.find(params[:id])
-    redirect_to new_session_path if @user != current_user
   end
 end

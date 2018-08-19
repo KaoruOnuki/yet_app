@@ -8,16 +8,16 @@
   </tr>
 
   <% @words.each do |word| %>
-    <tr>
-      <td><%= word.term %></td>
-      <td><%= word.memo %></td>
-      <td><%= word.user.name %></td>
-      <td><%= link_to '詳細', word_path(word.id) %></td>
-      <% if word.user_id == current_user.id %>
+    <% if current_user.id == word.user_id %>
+      <tr>
+        <td><%= word.term %></td>
+        <td><%= word.memo %></td>
+        <td><%= word.user.name %></td>
+        <td><%= link_to '詳細', word_path(word.id) %></td>
         <td><%= link_to '編集', edit_word_path(word.id) %></td>
         <td><%= link_to '削除', word_path(word.id), method: :delete, title: "削除の確認", data: {confirm: '本当に削除しますか？', cancel: "やめる", commit: "削除する"} %></td>
-      <% end %>
-    </tr>
+      </tr>
+    <% end %>
   <% end %>
 </table>
 

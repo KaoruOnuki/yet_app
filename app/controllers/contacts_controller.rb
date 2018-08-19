@@ -1,6 +1,6 @@
 class ContactsController < ApplicationController
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
-  before_action :your_contact, only: [:index, :new, :edit, :show]
+  before_action :redirect_if_not_logged_in, only: [:index, :new, :edit, :show]
 
   def index
     @contacts = Contact.all
@@ -58,10 +58,6 @@ class ContactsController < ApplicationController
 
   def contact_params
     params.require(:contact).permit(:name, :email, :content)
-  end
-
-  def your_contact
-    redirect_to new_session_path if !logged_in?
   end
 
   def notify_to_slack
