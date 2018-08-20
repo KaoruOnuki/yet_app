@@ -20,6 +20,7 @@ gem 'carrierwave'
 gem 'data-confirm-modal'
 gem 'dotenv-rails'
 gem 'mini_magick'
+gem 'ransack', github: 'activerecord-hackery/ransack'
 gem 'slack-api'
 
 group :development, :test do
