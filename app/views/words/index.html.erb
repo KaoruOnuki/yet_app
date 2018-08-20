@@ -1,22 +1,47 @@
 <h1>登録単語一覧</h1>
 <p><%= notice %></p>
+
+<%= search_form_for @q do |f| %>
+  <%= f.label :term_cont, "単語検索" %>
+  <%= f.search_field :term_cont %>
+  <br>
+  <%= f.label :created_at, '作成日' %>
+  <%= f.date_select :created_at_gteq,
+                    include_blank: true,
+                    start_year: 2018,
+                    end_year: Date.today.year,
+                    date_separator: '/'
+   %>〜
+  <%= f.date_select :created_at_lteq_end_of_day,
+                    include_blank: true,
+                    start_year: 2018,
+                    end_year: Date.today.year,
+                    date_separator: '/'
+   %>
+  <br>
+  <%= f.submit "検索" %>
+<% end %>
+
+<p>全投稿表示</p>
 <table>
   <tr>
-    <th>単語</th>
+    <th><%= sort_link(@q, :term, '単語', default_order: :desc) %></th>
     <th>説明</th>
-    <th>posted by</th>
+    <th>投稿者</th>
+    <th><%= sort_link(@q, :created_at, '作成日時') %></th>
   </tr>
 
-  <% @words.each do |word| %>
-    <% if current_user.id == word.user_id %>
+  <% @search_results.each do |search_result| %>
+    <% if search_result.user_id == current_user.id %>
       <tr>
-        <td><%= word.term %></td>
-        <td><%= word.memo %></td>
-        <td><%= word.user.name %></td>
-        <td><%= link_to '詳細', word_path(word.id) %></td>
-        <td><%= link_to '編集', edit_word_path(word.id) %></td>
-        <td><%= link_to '削除', word_path(word.id), method: :delete, title: "削除の確認", data: {confirm: '本当に削除しますか？', cancel: "やめる", commit: "削除する"} %></td>
-      </tr>
+        <td><%= search_result.term %></td>
+        <td><%= search_result.memo %></td>
+        <td><%= search_result.user.name %></td>
+        <td><%= search_result.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+        <td><%= link_to '詳細', word_path(search_result.id) %></td>
+        <td><%= link_to '編集', edit_word_path(search_result.id) %></td>
+        <td><%= link_to '削除', word_path(search_result.id), method: :delete, title: "削除の確認", data: {confirm: '本当に削除しますか？', cancel: "やめる", commit: "削除する"} %></td>
+      <tr>
     <% end %>
   <% end %>
 </table>

@@ -3,7 +3,9 @@ class WordsController < ApplicationController
   before_action :set_word, only: [:show, :edit, :update, :destroy]
 
   def index
-    @words = Word.all
+    @words = Word.select {|x| x.user_id == current_user.id}
+    @q = Word.ransack(params[:q])
+    @search_results = @q.result(distinct: true)
   end
 
   def new
