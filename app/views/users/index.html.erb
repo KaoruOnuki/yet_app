@@ -1,10 +1,14 @@
 <h2>ユーザー一覧</h2>
-<% @users.each do |user| %>
+<% @users.order('id desc').each do |user| %>
   <% if user.id != current_user.id %>
-      <div class="item">
-        <%= user.name %>
-        <%= link_to "メッセージ", conversations_path(sender_id: current_user.id, recipient_id: user.id), method: :post %>
-      </div>
-      <%= render 'follow_form', user: user %>
+    <div>
+      単語登録数：<%= Word.select{|x| x.user_id == user.id}.size %>
+    </div>
+    <div class="item">
+      <%= user.name %>さん
+      <%= link_to "メッセージ", conversations_path(sender_id: current_user.id, recipient_id: user.id), method: :post %>
+    </div>
+    <%= render 'follow_form', user: user %>
+    <p>---------------------------</p>
   <% end %>
 <% end %>
