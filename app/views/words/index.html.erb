@@ -64,5 +64,5 @@
         <%= link_to my_registered_word.term, word_path(my_registered_word.id) %>
       <% end %>
     <% end %>
-    <%= button_to 'send to slack', button_path, method: :get %>
+    <%= button_to 'Slackに送る', button_path, method: :get, title: "Slackへの送信の確認", data: {confirm: '本当に送りますか？', cancel: "やめる", commit: "送る"} %>
 </div>
