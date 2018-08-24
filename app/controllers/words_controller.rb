@@ -7,7 +7,9 @@ class WordsController < ApplicationController
     @q = Word.ransack(params[:q])
     @search_results = @q.result(distinct: true)
 
-    @random_word = @words.sample
+    if @words.present?
+      @random_word = @words.sample
+    end
 
     @registered_words_of_the_day = Word.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
   end

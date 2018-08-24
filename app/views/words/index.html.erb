@@ -49,12 +49,14 @@
 <%= link_to '新しい単語の登録', new_word_path %>
 
 
-<div class="random_tester">
-  <%= @random_word.term %>
-  <p>あとでカバーかけてあげるjavascript
-    <%= @random_word.memo %>
-  </p>
-</div>
+<% if @words.present? %>
+  <div class="random_tester">
+    <%= @random_word.term %>
+    <p>あとでカバーかけてあげるjavascript
+      <%= @random_word.memo %>
+    </p>
+  </div>
+<% end %>
 
 
 <div class="send_registered_words_of_the_day">
