@@ -16,4 +16,6 @@ Rails.application.routes.draw do
   end
 
   resources :relationships, only: [:create, :destroy]
+
+  get '/to_slack', to: 'words#to_slack', as: 'button'
 end

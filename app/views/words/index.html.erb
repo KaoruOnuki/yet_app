@@ -47,3 +47,22 @@
 </table>
 
 <%= link_to '新しい単語の登録', new_word_path %>
+
+
+<div class="random_tester">
+  <%= @random_word.term %>
+  <p>あとでカバーかけてあげるjavascript
+    <%= @random_word.memo %>
+  </p>
+</div>
+
+
+<div class="send_registered_words_of_the_day">
+  <p>今日も頑張りました。今日の単語登録終了！（今日登録した単語を学校slackに送る）</p>
+    <% @registered_words_of_the_day.each do |my_registered_word| %>
+      <% if my_registered_word.user_id == current_user.id %>
+        <%= link_to my_registered_word.term, word_path(my_registered_word.id) %>
+      <% end %>
+    <% end %>
+    <%= button_to 'send to slack', button_path, method: :get %>
+</div>

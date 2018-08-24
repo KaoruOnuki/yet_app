@@ -6,6 +6,21 @@ class WordsController < ApplicationController
     @words = Word.select {|x| x.user_id == current_user.id}
     @q = Word.ransack(params[:q])
     @search_results = @q.result(distinct: true)
+
+    @random_word = @words.sample
+
+    @registered_words_of_the_day = Word.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
+  end
+
+  def to_slack
+    @registered_words_of_the_day = Word.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
+    terms_of_my_registered_words = []
+    @registered_words_of_the_day.each do |words|
+      if words.user_id == current_user.id
+        terms_of_my_registered_words << words.term
+      end
+    end
+    notify_to_slack(terms_of_my_registered_words)
   end
 
   def new
@@ -58,5 +73,16 @@ class WordsController < ApplicationController
 
   def set_word
     @word = Word.find(params[:id])
+  end
+
+  def notify_to_slack(terms_of_my_registered_words)
+    text = <<-EOS
+-----------------------------
+#{@current_user.name}さんの今日の単語
+
+▼単語
+#{terms_of_my_registered_words.join("\n")}
+    EOS
+    Slack.chat_postMessage text: text, username: "単語登録のお知らせ", channel: "#test_kaoru2"
   end
 end

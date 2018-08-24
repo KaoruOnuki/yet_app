@@ -30,7 +30,6 @@ class ContactsController < ApplicationController
     if @contact.save
       ContactMailer.contact_mail(@contact).deliver
       redirect_to @contact, notice: 'お問い合わせを送信しました'
-      notify_to_slack
     else
       render :new
     end
@@ -58,18 +57,5 @@ class ContactsController < ApplicationController
 
   def contact_params
     params.require(:contact).permit(:name, :email, :content)
-  end
-
-  def notify_to_slack
-    text = <<-EOC
-    -----------------------------
-      [#{Rails.env}] 新しいお問い合わせが来ました。
-
-      ▼メールアドレス
-      #{@contact.email}
-      ▼内容
-      #{@contact.content}
-    EOC
-    Slack.chat_postMessage text: text, username: "お問い合わせのお知らせ", channel: "#test_kaoru2"
   end
 end
