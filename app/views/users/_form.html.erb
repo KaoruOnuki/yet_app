@@ -15,7 +15,7 @@
     <%= f.label :email %>
     <%= f.email_field :email %>
     <%= f.label :password %>
-    <%= f.password_field :password %>
+    <%= f.password_field :password, placeholder: "6文字以上半角入力",  onfocus: "this.placeholder=''" %>
     <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation %>
     <%= f.label :profile_picture %>

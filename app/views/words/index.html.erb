@@ -20,9 +20,9 @@
    %>
   <br>
   <%= f.submit "検索" %>
+  <%= link_to '検索条件のクリア', request.path %>
 <% end %>
 
-<p>全投稿表示</p>
 <table>
   <tr>
     <th><%= sort_link(@q, :term, '単語', default_order: :desc) %></th>
