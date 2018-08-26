@@ -1,7 +1,10 @@
 <h1><%= @user.name %>のページ</h1>
 <p>Eメールアドレス:<%= @user.email %></p>
 
-<%= image_tag @user.profile_picture.url %>
+<%= image_tag(@user.profile_picture.url) if @user.profile_picture.url.present? %>
+<p>1日のターゲット:<%= @user.target_of_the_day if @user.target_of_the_day.present? %></p>
+<p>1週間のターゲット:<%= @user.target_of_the_week if @user.target_of_the_week.present? %></p>
+<p>1ヶ月のターゲット:<%= @user.target_of_the_month if @user.target_of_the_month.present? %></p>
 <%= link_to "プロフィール編集", edit_user_path(@user.id) %>
 <%= link_to "単語一覧", words_path %>
 <%= link_to '新しいお問い合わせをする', new_contact_path %>
