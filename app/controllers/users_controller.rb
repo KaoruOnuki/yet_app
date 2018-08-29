@@ -27,14 +27,18 @@ class UsersController < ApplicationController
     number_of_words_this_week = Word.where(created_at: today.in_time_zone.all_week).where(user_id: @user.id).count
     number_of_words_this_month = Word.where(created_at: today.in_time_zone.all_month).where(user_id: @user.id).count
 
+    a = @user.target_of_the_day - number_of_words_today
+    b = @user.target_of_the_week - number_of_words_this_week
+    c = @user.target_of_the_month - number_of_words_this_month
+
     @chart_data_of_the_day = [["今日登録した単語数\n#{number_of_words_today}単語", number_of_words_today],
-                              ["ターゲット達成まで\n#{@user.target_of_the_day - number_of_words_today}単語", (@user.target_of_the_day - number_of_words_today)]]
+                              ["ターゲット達成まで\n#{a}単語", a ]]
 
     @chart_data_of_the_week = [["今週登録した単語数\n#{number_of_words_this_week}単語", number_of_words_this_week],
-                               ["ターゲット達成まで\n#{@user.target_of_the_week - number_of_words_this_week}単語", (@user.target_of_the_week - number_of_words_this_week)]]
+                               ["ターゲット達成まで\n#{b}単語", b ]]
 
     @chart_data_of_the_month = [["今月登録した単語数\n#{number_of_words_this_month}単語", number_of_words_this_month],
-                                ["ターゲット達成まで\n#{@user.target_of_the_month - number_of_words_this_month}単語", (@user.target_of_the_month - number_of_words_this_month)]]
+                                ["ターゲット達成まで\n#{c}単語", c ]]
   end
 
   def edit
