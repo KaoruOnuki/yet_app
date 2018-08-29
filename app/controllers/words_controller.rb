@@ -10,12 +10,11 @@ class WordsController < ApplicationController
     if @words.present?
       @random_word = @words.sample
     end
-
-    @registered_words_of_the_day = Word.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
+    registered_words_of_the_day
   end
 
   def to_slack
-    @registered_words_of_the_day = Word.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
+    registered_words_of_the_day
     terms_of_my_registered_words = []
     @registered_words_of_the_day.each do |words|
       if words.user_id == current_user.id
@@ -69,13 +68,18 @@ class WordsController < ApplicationController
   end
 
   private
-  
+
   def word_params
     params.require(:word).permit(:term, :memo, :user_id)
   end
 
   def set_word
     @word = Word.find(params[:id])
+  end
+
+  def registered_words_of_the_day
+    today = Date.today
+    @registered_words_of_the_day = Word.where(created_at: today.in_time_zone.all_day)
   end
 
   def notify_to_slack(terms_of_my_registered_words)
