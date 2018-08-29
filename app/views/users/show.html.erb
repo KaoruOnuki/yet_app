@@ -7,9 +7,21 @@
 <p>1ヶ月のターゲット:<%= @user.target_of_the_month if @user.target_of_the_month.present? %></p>
 <p><%= link_to "プロフィール編集", edit_user_path(@user.id) %></p>
 
+
 <%= pie_chart @chart_data_of_the_day, donut: true, height: "200px", refresh: 60, colors: ["#24a4fb", "#ddd"] %>
+<% if @user.target_of_the_day.present? && @user.target_of_the_day <= @number_of_words_today %>
+  <h2>目標達成おめでとう！頑張ってるね</h2>
+<% end %>
+
 <%= pie_chart @chart_data_of_the_week, donut: true, height: "200px", refresh: 60, colors: ["#24a4fb", "#ddd"] %>
+<% if @user.target_of_the_week.present? && @user.target_of_the_week <= @number_of_words_this_week%>
+  <h2>目標達成おめでとう！頑張ってるね</h2>
+<% end %>
+
 <%= pie_chart @chart_data_of_the_month, donut: true, height: "200px", refresh: 60, colors: ["#24a4fb", "#ddd"] %>
+<% if @user.target_of_the_month.present? && @user.target_of_the_month <= @number_of_words_this_month %>
+  <h2>目標達成おめでとう！頑張ってるね</h2>
+<% end %>
 
 <p><%= link_to "単語一覧", words_path %></p>
 <p><%= link_to '新しいお問い合わせをする', new_contact_path %></p>
