@@ -16,4 +16,6 @@
 //= require jquery/dist/jquery.js
 //= require bootstrap/dist/js/bootstrap.min
 //= require data-confirm-modal
+//= require Chart.bundle
+//= require chartkick
 //= require_tree .

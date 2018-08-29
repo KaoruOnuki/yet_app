@@ -1,10 +1,18 @@
 <h1><%= @user.name %>のページ</h1>
 <p>Eメールアドレス:<%= @user.email %></p>
 
-<%= image_tag @user.profile_picture.url %>
-<%= link_to "プロフィール編集", edit_user_path(@user.id) %>
-<%= link_to "単語一覧", words_path %>
-<%= link_to '新しいお問い合わせをする', new_contact_path %>
+<%= image_tag(@user.profile_picture.url) if @user.profile_picture.url.present? %>
+<p>1日のターゲット:<%= @user.target_of_the_day if @user.target_of_the_day.present? %></p>
+<p>1週間のターゲット:<%= @user.target_of_the_week if @user.target_of_the_week.present? %></p>
+<p>1ヶ月のターゲット:<%= @user.target_of_the_month if @user.target_of_the_month.present? %></p>
+<p><%= link_to "プロフィール編集", edit_user_path(@user.id) %></p>
+
+<%= pie_chart @chart_data_of_the_day, donut: true, height: "200px", refresh: 60, colors: ["#24a4fb", "#ddd"] %>
+<%= pie_chart @chart_data_of_the_week, donut: true, height: "200px", refresh: 60, colors: ["#24a4fb", "#ddd"] %>
+<%= pie_chart @chart_data_of_the_month, donut: true, height: "200px", refresh: 60, colors: ["#24a4fb", "#ddd"] %>
+
+<p><%= link_to "単語一覧", words_path %></p>
+<p><%= link_to '新しいお問い合わせをする', new_contact_path %></p>
 
 <h2>フォローユーザー一覧</h2>
 <% @followings.each do |following| %>

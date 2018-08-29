@@ -1,0 +1,14 @@
+ja:
+  activerecord:
+    models:
+      user: "ユーザー"
+    attributes:
+      user:
+        name: "名前"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "確認用パスワード"
+        profile_picture: "プロフィール用画像"
+        target_of_the_day: "1日のターゲット"
+        target_of_the_week: "1週間のターゲット"
+        target_of_the_month: "1ヶ月のターゲット"
