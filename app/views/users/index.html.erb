@@ -2,7 +2,8 @@
 <% @users.order('id desc').each do |user| %>
   <% if user.id != current_user.id %>
     <div>
-      単語登録数：<%= Word.select{|x| x.user_id == user.id}.size %>
+      過去の単語登録数：<%= Word.select{|x| x.user_id == user.id}.size %>
+      今日の単語登録数：
     </div>
     <div class="item">
       <%= user.name %>さん

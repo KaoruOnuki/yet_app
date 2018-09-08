@@ -1,4 +1,5 @@
 class MessagesController < ApplicationController
+  before_action :redirect_if_not_logged_in
   before_action do
     @conversation = Conversation.find(params[:conversation_id])
   end

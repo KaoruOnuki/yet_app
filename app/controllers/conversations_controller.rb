@@ -1,4 +1,5 @@
 class ConversationsController < ApplicationController
+  before_action :redirect_if_not_logged_in
   def index
     @users = User.all
     @conversations = Conversation.all

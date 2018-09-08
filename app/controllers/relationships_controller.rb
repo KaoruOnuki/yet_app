@@ -1,4 +1,5 @@
 class RelationshipsController < ApplicationController
+  before_action :redirect_if_not_logged_in
   respond_to? :js
 
   def create

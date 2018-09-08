@@ -1,6 +1,6 @@
 class ContactsController < ApplicationController
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
-  before_action :redirect_if_not_logged_in, only: [:index, :new, :edit, :show]
+  before_action :redirect_if_not_logged_in
 
   def index
     @contacts = Contact.all

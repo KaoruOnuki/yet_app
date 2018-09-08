@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
+  before_action :redirect_if_not_logged_in
   before_action :redirect_if_wrong_user, only: [:show, :edit, :update]
+
   def index
     @users = User.all
   end
