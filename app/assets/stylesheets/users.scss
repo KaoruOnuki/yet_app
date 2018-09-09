@@ -31,6 +31,17 @@
   overflow: hidden;
 }
 
+.footer_overlay {
+  position: relative;
+  background: image-url('PhotobyTimWrightonUnsplash.jpeg');
+  width: 100%;
+  height: 800px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
 /* #################### Responsive Design 812px以下 #################### */
 @media (max-width: 812px) {
   .top_menu {
