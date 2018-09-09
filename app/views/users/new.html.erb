@@ -1,12 +1,57 @@
-<% if @user.errors.any? %>
-  <div id = "error_explanation">
-    <h2><%= @user.errors.count %>件のエラーあり</h2>
-    <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+<div class="container">
+  <% if @user.errors.any? %>
+    <div id = "error_explanation">
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-<%= render 'form', user: @user %>
+  <div class="top">
+    <div class="top_overlay_one">
+    </div>
+
+    <div class="top_overlay_two">
+    </div>
+
+    <div class="top_logo">
+      LOGO
+      <%#= image_tag "logo" %>
+    </div>
+  </div>
+
+  <section class="features">
+    <div class="feature_one">
+      <div class="feature_one_back">
+        VOCABULARY
+      </div>
+      <div class="feature_one_inner">
+        本気で単語力アップを目指すあなたに作られた単語帳アプリです。
+      </div>
+    </div>
+
+    <div class="feature_two">
+      <div class="feature_two_back">
+        STUDY TOGETHER
+      </div>
+      <div class="feature_two_inner">
+        頑張っている仲間の進捗がわかります。メッセージ機能を活用して友達の輪を広げましょう。
+      </div>
+    </div>
+
+    <div class="feature_three">
+      <div class="feature_three_back">
+        SIMPLE DESIGN
+      </div>
+      <div class="feature_three_inner">
+        シンプルな機能性とデザイン性であなたの学習をサポートします。
+      </div>
+    </div>
+  </section>
+
+  <section class="sign_in">
+    <%= render 'form', user: @user %>
+  </section>
+</div>

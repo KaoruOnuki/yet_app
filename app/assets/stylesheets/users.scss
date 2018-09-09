@@ -1,3 +1,166 @@
-// Place all the styles related to the users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+// layouts/application.html.erb
+.top_menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.top_menu ul {
+  text-decoration: none;
+  list-style: none;
+  text-align: right;
+}
+
+.top_menu i {
+  margin: 20px 50px;
+  color: #ddd;
+}
+
+.footer_image {
+  position: relative;
+  background: image-url('PhotobyAnnieSprattonUnsplash.jpeg');
+  width: 100%;
+  height: 800px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+/* #################### Responsive Design 812px以下 #################### */
+@media (max-width: 812px) {
+  .top_menu {
+    position: fixed;
+    width: 100%;
+    height: 50px;
+    top: auto;
+    bottom: 0;
+    background-color: #ddd;
+  }
+
+  .top_menu ul {
+    text-align: left;
+    padding-left: 0;
+  }
+
+  .top_menu li {
+    display: inline-block;
+  }
+
+  .top_menu i {
+    display: none;
+  }
+}
+
+// users/new.html.erb
+.top {
+  position: relative;
+  background: image-url('PhotobyJessicaLewisonUnsplash.jpeg');
+  width: 100%;
+  height: 800px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.top_overlay_one {
+  position: absolute;
+  background: rgba(36, 164, 251, 0.5);
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 150%;
+  margin: -20%;
+  -webkit-transform-origin: left center;
+  -ms-transform-origin: left center;
+  transform-origin: left center;
+  -webkit-transform: rotate(25deg);
+  -ms-transform: rotate(25deg);
+  transform: rotate(25deg);
+}
+
+.top_overlay_two {
+  position: absolute;
+  background: rgba(2, 26, 48, 0.7);
+  top: 0;
+  left: 0;
+  width: 80%;
+  height: 50%;
+  margin: -20%;
+  -webkit-transform-origin: right center;
+  -ms-transform-origin: right center;
+  transform-origin: right center;
+  -webkit-transform: rotate(-15deg);
+  -ms-transform: rotate(-15deg);
+  transform: rotate(-15deg);
+}
+
+.top_logo {
+  position: absolute;
+  margin: 100px;
+  color: #fff;
+}
+
+.feature_one, .feature_two, .feature_three {
+  position: relative;
+  overflow: hidden;
+  margin: 10% 0;
+  padding: 80px 0;
+}
+
+.feature_one:before, .feature_two:after, .feature_three:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120%;
+  height: 80%;
+  margin: 3% -10% 0;
+  background: #011931;
+  -webkit-transform-origin: left center;
+  -ms-transform-origin: left center;
+  transform-origin: left center;
+  -webkit-transform: rotate(3deg);
+  -ms-transform: rotate(3deg);
+  transform: rotate(3deg);
+  z-index: -1;
+}
+
+.feature_one_inner, .feature_two_inner, .feature_three_inner {
+  box-sizing: boder-box;
+  width: 100%;
+  max-width: 640px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 100px 10px 120px;
+  color: #fff;
+  text-align: center;
+}
+
+.feature_one_back, .feature_two_back, .feature_three_back {
+  color: #fff;
+  font-size: 10em;
+}
+
+.feature_one:after, .feature_two:before, .feature_three:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120%;
+  height: 80%;
+  margin: 2% -10% 0;
+  background-color: #24a4fb;
+  -webkit-transform-origin: right center;
+  -ms-transform-origin: right center;
+  transform-origin: right center;
+  -webkit-transform: rotate(-3deg);
+  -ms-transform: rotate(-3deg);
+  transform: rotate(-3deg);
+  z-index: -1;
+}

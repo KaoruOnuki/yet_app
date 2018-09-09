@@ -12,19 +12,40 @@
   </head>
 
   <body>
-    <% flash.each do |key, value| %>
-      <%= content_tag(:div, value, class: "#{key}") %>
-    <% end %>
+    <header>
+      <div class="top_menu">
+        <ul>
+        <% if logged_in? %>
+          <li><%= link_to "マイページ", user_path(current_user.id) %><i class="fas fa-circle"></i></li>
+          <li><%= link_to "ログアウト", session_path(current_user.id), method: :delete %><i class="fas fa-circle"></i></li>
+          <li><%= link_to "メッセージ一覧", conversations_path %><i class="fas fa-circle"></i></li>
+          <li><%= link_to "ユーザー一覧", users_path %><i class="fas fa-circle"></i></li>
+        <% else %>
+          <li><%= link_to "サインアップ", new_user_path %><i class="fas fa-circle"></i></li>
+          <li><%= link_to "ログイン", new_session_path %><i class="fas fa-circle"></i></li>
+        <% end %>
+        </ul>
+      </div>
 
-    <% if logged_in? %>
-      <%= link_to "マイページ", user_path(current_user.id) %>
-      <%= link_to "ログアウト", session_path(current_user.id), method: :delete %>
-      <%= link_to "メッセージ一覧", conversations_path %>
-      <%= link_to "ユーザー一覧", users_path %>
-    <% else %>
-      <%= link_to "サインアップ", new_user_path %>
-      <%= link_to "ログイン", new_session_path %>
-    <% end %>
+      <% flash.each do |key, value| %>
+        <%= content_tag(:div, value, class: "#{key} alert alert-info", role: "alert") %>
+      <% end %>
+    </header>
+
     <%= yield %>
+
+    <footer>
+      <div class="footer_image">
+      </div>
+
+      <div class="footer_overlay">
+        <%#= image_tag "PhotobyAnnieSprattonUnsplash.jpg" %>
+      </div>
+
+      <div class="footer_inner">
+        <h2>ready to study?</h2>
+        <p>created by Kaoru Onuki<br>@ DIVE INTO CODE corp. graduation assignment 201809<br>referring to the website: Ch</p>
+      </div>
+    </footer>
   </body>
 </html>

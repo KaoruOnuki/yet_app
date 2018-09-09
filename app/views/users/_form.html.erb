@@ -1,47 +1,81 @@
-<% if logged_in? %>
-  <h1>プロフィール編集</h1>
-  <%= form_with(model: user, local: true) do |f| %>
-    <%= f.label :profile_picture %>
-    <%= image_tag(@user.profile_picture.url) if @user.profile_picture.url.present? %>
-    <%= f.file_field :profile_picture, id: :profile_picture %>
-    <%= f.hidden_field :profile_picture_cache %>
+<div class="sign_in_inner">
+  <% if logged_in? %>
+    <h1>プロフィール編集</h1>
+    <%= form_with(model: user, local: true) do |f| %>
+      <div class="row">
+        <%= f.label :profile_picture %>
+        <%= image_tag(@user.profile_picture.url) if @user.profile_picture.url.present? %>
+        <%= f.file_field :profile_picture, id: :profile_picture %>
+        <%= f.hidden_field :profile_picture_cache %>
+      </div>
 
-    <%= f.label :target_of_the_day %>
-    <%= f.number_field :target_of_the_day, min: 1, max: 200 %>
+      <div class="row">
+        <%= f.label :target_of_the_day %>
+        <%= f.number_field :target_of_the_day, min: 1, max: 200 %>
+      </div>
 
-    <%= f.label :target_of_the_week %>
-    <%= f.number_field :target_of_the_week, min: 1, max: 2000 %>
+      <div class="row">
+        <%= f.label :target_of_the_week %>
+        <%= f.number_field :target_of_the_week, min: 1, max: 2000 %>
+      </div>
 
-    <%= f.label :target_of_the_month %>
-    <%= f.number_field :target_of_the_month, min: 1, max: 10000 %>
+      <div class="row">
+        <%= f.label :target_of_the_month %>
+        <%= f.number_field :target_of_the_month, min: 1, max: 10000 %>
+      </div>
 
-    <%= f.submit "アップデート" %>
+      <div class="row">
+        <%= f.submit "アップデート" %>
+      </div>
+    <% end %>
+  <% else %>
+    <h1>サインアップ</h1>
+    <%= form_with(model: user, local: true) do |f| %>
+      <div class="row">
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      </div>
+
+      <div class="row">
+        <%= f.label :email %>
+        <%= f.email_field :email %>
+      </div>
+
+      <div class="row">
+        <%= f.label :password %>
+        <%= f.password_field :password, placeholder: "6文字以上半角入力",  onfocus: "this.placeholder=''" %>
+      </div>
+
+      <div class="row">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation %>
+      </div>
+
+      <div class="row">
+        <%= f.label :profile_picture %>
+        <%= image_tag(@user.profile_picture.url) if @user.profile_picture.url.present? %>
+        <%= f.file_field :profile_picture, id: :profile_picture %>
+        <%= f.hidden_field :profile_picture_cache %>
+      </div>
+
+      <div class="row">
+        <%= f.label :target_of_the_day %>
+        <%= f.number_field :target_of_the_day, min: 1, max: 200 %>
+      </div>
+
+      <div class="row">
+        <%= f.label :target_of_the_week %>
+        <%= f.number_field :target_of_the_week, min: 1, max: 2000 %>
+      </div>
+
+      <div class="row">
+        <%= f.label :target_of_the_month %>
+        <%= f.number_field :target_of_the_month, min: 1, max: 10000 %>
+      </div>
+
+      <div class="row">
+        <%= f.submit "サインアップ" %>
+      </div>
+    <% end %>
   <% end %>
-<% else %>
-  <h1>サインアップ</h1>
-  <%= form_with(model: user, local: true) do |f| %>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-    <%= f.label :email %>
-    <%= f.email_field :email %>
-    <%= f.label :password %>
-    <%= f.password_field :password, placeholder: "6文字以上半角入力",  onfocus: "this.placeholder=''" %>
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-    <%= f.label :profile_picture %>
-    <%= image_tag(@user.profile_picture.url) if @user.profile_picture.url.present? %>
-    <%= f.file_field :profile_picture, id: :profile_picture %>
-    <%= f.hidden_field :profile_picture_cache %>
-
-    <%= f.label :target_of_the_day %>
-    <%= f.number_field :target_of_the_day, min: 1, max: 200 %>
-
-    <%= f.label :target_of_the_week %>
-    <%= f.number_field :target_of_the_week, min: 1, max: 2000 %>
-
-    <%= f.label :target_of_the_month %>
-    <%= f.number_field :target_of_the_month, min: 1, max: 10000 %>
-
-    <%= f.submit "サインアップ" %>
-  <% end %>
-<% end %>
+</div>
