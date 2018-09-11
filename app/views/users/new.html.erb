@@ -1,3 +1,16 @@
+<div class="top">
+  <div class="top_overlay_one">
+  </div>
+
+  <div class="top_overlay_two">
+  </div>
+
+  <div class="top_logo">
+    LOGO
+    <%#= image_tag "logo" %>
+  </div>
+</div>
+
 <div class="container">
   <% if @user.errors.any? %>
     <div id = "error_explanation">
@@ -9,23 +22,10 @@
     </div>
   <% end %>
 
-  <div class="top">
-    <div class="top_overlay_one">
-    </div>
-
-    <div class="top_overlay_two">
-    </div>
-
-    <div class="top_logo">
-      LOGO
-      <%#= image_tag "logo" %>
-    </div>
-  </div>
-
   <section class="features">
     <div class="feature_one">
       <div class="feature_one_back">
-        VOCABULARY
+        NEW<br>WORDS
       </div>
       <div class="feature_one_inner">
         本気で単語力アップを目指すあなたに作られた単語帳アプリです。
@@ -34,24 +34,87 @@
 
     <div class="feature_two">
       <div class="feature_two_back">
-        STUDY TOGETHER
+        NEW<br>FRIENDS
       </div>
       <div class="feature_two_inner">
-        頑張っている仲間の進捗がわかります。メッセージ機能を活用して友達の輪を広げましょう。
+        頑張っている仲間の進捗がわかります。<br>メッセージ機能を活用して友達の輪を広げましょう。
       </div>
     </div>
 
-    <div class="feature_three">
-      <div class="feature_three_back">
-        SIMPLE DESIGN
+    <div class="feature_one">
+      <div class="feature_one_back">
+        NEW<br>DESIGN
       </div>
-      <div class="feature_three_inner">
+      <div class="feature_one_inner">
         シンプルな機能性とデザイン性であなたの学習をサポートします。
       </div>
     </div>
   </section>
-
-  <section class="sign_in">
-    <%= render 'form', user: @user %>
-  </section>
 </div>
+
+<section class="steps">
+  <div class="steps_overlay_one">
+  </div>
+
+  <div class="steps_overlay_two">
+  </div>
+
+  <div class="steps_title">
+    <h2>始める前に</h2>
+    <h2>あなたのモチベーションをあげる4つの機能</h2>
+  </div>
+
+  <div class="steps-inners">
+    <div class="step_one">
+      <div class="step_one_number">
+        <p>1</p>
+      </div>
+      <div class="step_one_title">
+        SIGN UP
+      </div>
+      <div class="step_one_inner">
+        アカウント作成時に自分の目標とする単語数を登録できる。
+      </div>
+    </div>
+
+    <div class="step_two">
+      <div class="step_two_number">
+        <p>2</p>
+      </div>
+      <div class="step_two_title">
+        TARGET
+      </div>
+      <div class="step_two_inner">
+        設定した目標単語数までどれくらいか見えるので頑張れる。
+      </div>
+    </div>
+
+    <div class="step_three">
+      <div class="step_three_number">
+        <p>3</p>
+      </div>
+      <div class="step_three_title">
+        SLACK
+      </div>
+      <div class="step_three_inner">
+        登録した単語をslackで送ってコミュニティーのみんなとシェアできる。
+      </div>
+    </div>
+
+    <div class="step_four">
+      <div class="step_four_number">
+        <p>4</p>
+      </div>
+      <div class="step_four_title">
+        TEST
+      </div>
+      <div class="step_four_inner">
+        スライド式のテストがあるのでゲーム感覚で今まで覚えた単語を総復習できる。
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sign_in">
+  <%= render 'form', user: @user %>
+</section>

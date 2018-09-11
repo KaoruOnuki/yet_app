@@ -18,27 +18,14 @@
         <ul>
         <% if logged_in? %>
           <li><%= link_to "マイページ", user_path(current_user.id) %><i class="fas fa-circle"></i></li>
+          <li><%= link_to "ログアウト", session_path(current_user.id), method: :delete %><i class="fas fa-circle"></i></li>
           <li><%= link_to "メッセージ一覧", conversations_path %><i class="fas fa-circle"></i></li>
           <li><%= link_to "ユーザー一覧", users_path %><i class="fas fa-circle"></i></li>
-          <li><%= link_to "ログアウト", session_path(current_user.id), method: :delete %><i class="fas fa-circle"></i></li>
         <% else %>
           <li><%= link_to "サインアップ", new_user_path %><i class="fas fa-circle"></i></li>
           <li><%= link_to "ログイン", new_session_path %><i class="fas fa-circle"></i></li>
         <% end %>
         </ul>
-      </div>
-
-      <div class="general_top">
-        <div class="top_overlay_one">
-        </div>
-
-        <div class="top_overlay_two">
-        </div>
-
-        <div class="top_logo">
-          LOGO
-          <%#= image_tag "logo" %>
-        </div>
       </div>
 
       <% flash.each do |key, value| %>
@@ -62,7 +49,7 @@
 
       <div class="footer_inner">
         <h2>YET</h2>
-        <p>created by Kaoru Onuki<br>@ DIVE INTO CODE corp. graduation assignment 201809<br>referring to the website: Ch</p>
+        <p>Graduation assignment by Kaoru Onuki 201804<br>@DIVE INTO CODE Corp.</p>
       </div>
     </footer>
   </body>

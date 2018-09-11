@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    render layout: "second_layout"
   end
 
   def create
