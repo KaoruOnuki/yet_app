@@ -17,10 +17,13 @@
       <div class="top_menu">
         <ul>
         <% if logged_in? %>
-          <li><%= link_to "マイページ", user_path(current_user.id) %><i class="fas fa-circle"></i></li>
-          <li><%= link_to "メッセージ一覧", conversations_path %><i class="fas fa-circle"></i></li>
-          <li><%= link_to "ユーザー一覧", users_path %><i class="fas fa-circle"></i></li>
-          <li><%= link_to "ログアウト", session_path(current_user.id), method: :delete %><i class="fas fa-circle"></i></li>
+          <li><%= link_to_unless_current 'マイページ', user_path(@user) %><i class="fas fa-circle"></i></li>
+          <li><%= link_to_unless_current "単語登録", words_path %><i class="fas fa-circle"></i></li>
+          <li><%= link_to_unless_current "チャット記録", conversations_path %><i class="fas fa-circle"></i></li>
+          <li><%= link_to_unless_current "ユーザー一覧", users_path %><i class="fas fa-circle"></i></li>
+          <li><%= link_to_unless_current "プロフィール編集", edit_user_path(@user.id) %><i class="fas fa-circle"></i></li>
+          <li><%= link_to_unless_current "お問い合わせ", new_contact_path %><i class="fas fa-circle"></i></li>
+          <li><%= link_to_unless_current "ログアウト", session_path(current_user.id), method: :delete %><i class="fas fa-circle"></i></li>
         <% else %>
           <li><%= link_to "サインアップ", new_user_path %><i class="fas fa-circle"></i></li>
           <li><%= link_to "ログイン", new_session_path %><i class="fas fa-circle"></i></li>
@@ -37,7 +40,9 @@
 
         <div class="top_logo">
           LOGO
-          <%#= image_tag "logo" %>
+          <% if logged_in? %>
+            <%= link_to image_tag('PhotobyTimWrightonUnsplash.jpeg', { border: '0', alt: 'マイページ'}), user_path(current_user.id) %>
+          <% end %>
         </div>
       </div>
 
@@ -49,7 +54,7 @@
     <%= yield %>
 
     <footer>
-      <div class="footer_image">
+      <div class="footer_image_application">
       </div>
 
       <div class="footer_overlay">
@@ -62,7 +67,7 @@
 
       <div class="footer_inner">
         <h2>YET</h2>
-        <p>created by Kaoru Onuki<br>@ DIVE INTO CODE corp. graduation assignment 201809<br>referring to the website: Ch</p>
+        <p>Graduation assignment by Kaoru Onuki 201804<br>@DIVE INTO CODE Corp.</p>
       </div>
     </footer>
   </body>

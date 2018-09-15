@@ -1,6 +1,7 @@
 class ContactsController < ApplicationController
-  before_action :set_contact, only: [:show, :edit, :update, :destroy]
+  before_action :set_contact, only: [:show, :destroy]
   before_action :redirect_if_not_logged_in
+  before_action :set_user
 
   def index
     @contacts = Contact.all
@@ -11,9 +12,6 @@ class ContactsController < ApplicationController
 
   def new
     @contact = Contact.new
-  end
-
-  def edit
   end
 
   def create
@@ -32,16 +30,6 @@ class ContactsController < ApplicationController
       redirect_to @contact, notice: 'お問い合わせを送信しました'
     else
       render :new
-    end
-  end
-
-  def update
-    @contact.user_id = current_user.id
-    if @contact.update(contact_params)
-      ContactMailer.contact_mail(@contact).deliver
-      redirect_to @contact, notice: 'お問い合わせを再送信しました'
-    else
-      render :edit
     end
   end
 

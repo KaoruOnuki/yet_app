@@ -1,5 +1,6 @@
 class WordsController < ApplicationController
   before_action :redirect_if_not_logged_in
+  before_action :set_user
   before_action :set_word, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -50,7 +51,7 @@ class WordsController < ApplicationController
 
   def update
     if @word.update(word_params)
-      redirect_to words_path, notice: '単語を編集しました'
+      redirect_to word_path(@word.id), notice: '単語を編集しました'
     else
       render 'edit'
     end

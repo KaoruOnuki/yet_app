@@ -1,15 +1,28 @@
-<h2>ユーザー一覧</h2>
-<% @users.order('id desc').each do |user| %>
-  <% if user.id != current_user.id %>
-    <div>
-      過去の単語登録数：<%= Word.select{|x| x.user_id == user.id}.size %>
-      今日の単語登録数：
+<div class="container">
+  <h2>ユーザー一覧</h2>
+
+  <div class="other_users">
+  <% @users.order('id desc').each do |user| %>
+    <div class="other_user">
+    <% if user.id != current_user.id %>
+      <div>
+        <%= image_tag(user.profile_picture.url, { border: '0', alt: 'プロフィール画像'}) if user.profile_picture.url.present? %>
+      </div>
+      <div>
+        <%= user.name %>さん
+      </div>
+      <div>
+        単語登録数<%= Word.select{|x| x.user_id == user.id}.size %>
+      </div>
+      <div class="item">
+        <%= link_to "メッセージ", conversations_path(sender_id: current_user.id, recipient_id: user.id), method: :post, class: :link_button %>
+      </div>
+      <%= render 'follow_form', user: user %>
+      <p>---------------------------</p>
+    <% end %>
     </div>
-    <div class="item">
-      <%= user.name %>さん
-      <%= link_to "メッセージ", conversations_path(sender_id: current_user.id, recipient_id: user.id), method: :post %>
-    </div>
-    <%= render 'follow_form', user: user %>
-    <p>---------------------------</p>
   <% end %>
-<% end %>
+  </div>
+
+  <%= link_to 'マイページに戻る', user_path(@user), class: :link_button %>
+</div>

@@ -1,14 +1,13 @@
-<table>
-  <thead>
-    <h2>メッセージ一覧</h2>
-  </thead>
-  <tbody>
-    <% @conversations.each do |conversation| %>
-      <td>
-        <% if conversation.target_user(current_user).present? %>
-          <%= link_to conversation.target_user(current_user).name, conversation_messages_path(conversation) %>
-        <% end %>
-      </td>
+<div class="container">
+  <h2>チャット記録</h2>
+  <div class="message_banner">
+    <p><%= link_to 'ユーザー一覧', users_path %>から友達の輪を広げましょう</p>
+  </div>
+  <% @conversations.each do |conversation| %>
+    <% if conversation.target_user(current_user).present? %>
+      <p><%= link_to conversation.target_user(current_user).name, conversation_messages_path(conversation) %>さんとのチャット記録</p>
     <% end %>
-  </tbody>
-</table>
+  <% end %>
+
+  <%= link_to 'マイページに戻る', user_path(@user), class: :link_button %>
+</div>

@@ -14,16 +14,24 @@
 
   <body>
     <header>
+      <div class="top">
+        <div class="top_overlay_one">
+        </div>
+
+        <div class="top_overlay_two">
+        </div>
+
+        <div class="top_logo">
+          LOGO
+          <%#= image_tag "logo" %>
+        </div>
+      </div>
+
       <div class="top_menu">
         <ul>
-        <% if logged_in? %>
-          <li><%= link_to "マイページ", user_path(current_user.id) %><i class="fas fa-circle"></i></li>
-          <li><%= link_to "ログアウト", session_path(current_user.id), method: :delete %><i class="fas fa-circle"></i></li>
-          <li><%= link_to "メッセージ一覧", conversations_path %><i class="fas fa-circle"></i></li>
-          <li><%= link_to "ユーザー一覧", users_path %><i class="fas fa-circle"></i></li>
-        <% else %>
-          <li><%= link_to "サインアップ", new_user_path %><i class="fas fa-circle"></i></li>
-          <li><%= link_to "ログイン", new_session_path %><i class="fas fa-circle"></i></li>
+        <% unless logged_in? %>
+          <li><%= link_to_unless_current "サインアップ", new_user_path %><i class="fas fa-circle"></i></li>
+          <li><%= link_to_unless_current "ログイン", new_session_path %><i class="fas fa-circle"></i></li>
         <% end %>
         </ul>
       </div>
@@ -36,7 +44,7 @@
     <%= yield %>
 
     <footer>
-      <div class="footer_image">
+      <div class="footer_image_second_application">
       </div>
 
       <div class="footer_overlay">

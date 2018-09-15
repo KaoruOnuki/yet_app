@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def new
+    render layout: "second_layout"
   end
 
   def create
@@ -7,9 +8,10 @@ class SessionsController < ApplicationController
 
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
+      flash[:success] = "Welcome to YET"
       redirect_to user_path(user.id)
     else
-      flash.now[:danger] = "ログインに失敗しました"
+      flash[:danger] = "ログインできません"
       render 'new'
     end
   end

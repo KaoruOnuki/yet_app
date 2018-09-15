@@ -1,5 +1,7 @@
 class ConversationsController < ApplicationController
   before_action :redirect_if_not_logged_in
+  before_action :set_user
+  
   def index
     @users = User.all
     @conversations = Conversation.all

@@ -1,3 +1,10 @@
-// Place all the styles related to the Contacts controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.contact_form_input_field {
+  width: 80%;
+  height: 200px;
+  margin: 10px 10px 30px 10px;
+  word-wrap: break-word;
+}
+
+#contact_content {
+  border: 1px solid #ddd;
+}

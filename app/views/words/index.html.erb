@@ -1,70 +1,84 @@
-<h1>登録単語一覧</h1>
-<p><%= notice %></p>
-
-<%= search_form_for @q do |f| %>
-  <%= f.label :term_cont, "単語検索" %>
-  <%= f.search_field :term_cont %>
-  <br>
-  <%= f.label :created_at, '作成日' %>
-  <%= f.date_select :created_at_gteq,
-                    include_blank: true,
-                    start_year: 2018,
-                    end_year: Date.today.year,
-                    date_separator: '/'
-   %>〜
-  <%= f.date_select :created_at_lteq_end_of_day,
-                    include_blank: true,
-                    start_year: 2018,
-                    end_year: Date.today.year,
-                    date_separator: '/'
-   %>
-  <br>
-  <%= f.submit "検索" %>
-  <%= link_to '検索条件のクリア', request.path %>
-<% end %>
-
-<table>
-  <tr>
-    <th><%= sort_link(@q, :term, '単語', default_order: :desc) %></th>
-    <th>説明</th>
-    <th>投稿者</th>
-    <th><%= sort_link(@q, :created_at, '作成日時') %></th>
-  </tr>
-
-  <% @search_results.each do |search_result| %>
-    <% if search_result.user_id == current_user.id %>
-      <tr>
-        <td><%= search_result.term %></td>
-        <td><%= search_result.memo %></td>
-        <td><%= search_result.user.name %></td>
-        <td><%= search_result.created_at.strftime('%Y/%m/%d %H:%M') %></td>
-        <td><%= link_to '詳細', word_path(search_result.id) %></td>
-        <td><%= link_to '編集', edit_word_path(search_result.id) %></td>
-        <td><%= link_to '削除', word_path(search_result.id), method: :delete, title: "削除の確認", data: {confirm: '本当に削除しますか？', cancel: "やめる", commit: "削除する"} %></td>
-      <tr>
+<div class="container">
+  <p><%= notice %></p>
+  <h1>単語検索</h1>
+  <div class="words_search">
+    <%= search_form_for @q do |f| %>
+      <%= f.label :term_cont, "単語で検索", placeholder: "単語を入力してください" %>
+      <%= f.search_field :term_cont %>
+      <br>
+      <%= f.label :created_at, '単語登録日で検索' %>
+      <%= f.date_select :created_at_gteq,
+                        include_blank: true,
+                        use_month_numbers: true,
+                        start_year: 2018,
+                        end_year: Date.today.year,
+                        date_separator: '/'
+      %>〜
+      <%= f.date_select :created_at_lteq_end_of_day,
+                        include_blank: true,
+                        use_month_numbers: true,
+                        start_year: 2018,
+                        end_year: Date.today.year,
+                        date_separator: '/'
+       %>
+      <br>
+      <%= f.submit "検索", class: :button %>
+      <%= link_to 'クリア', request.path, class: :clear_button %>
     <% end %>
-  <% end %>
-</table>
-
-<%= link_to '新しい単語の登録', new_word_path %>
-
-
-<% if @words.present? %>
-  <div class="random_tester">
-    <%= @random_word.term %>
-    <p>あとでカバーかけてあげるjavascript
-      <%= @random_word.memo %>
-    </p>
   </div>
-<% end %>
 
+  <div class="words_list">
+    <div class="words_list_inner">
+      <div class="words_list_inner_header">
+        <p class="row"><%= sort_link(@q, :term, '登録した単語一覧', default_order: :desc) %></p>
+      </div>
 
-<div class="send_registered_words_of_the_day">
-  <p>今日も頑張りました。今日の単語登録終了！（今日登録した単語を学校slackに送る）</p>
-    <% @registered_words_of_the_day.each do |my_registered_word| %>
-      <% if my_registered_word.user_id == current_user.id %>
-        <%= link_to my_registered_word.term, word_path(my_registered_word.id) %>
+      <div class="words_list_inner_body">
+      <% @search_results.each do |search_result| %>
+        <% if search_result.user_id == current_user.id %>
+          <p class="row"><%= link_to word_path(search_result.id) do %><%= search_result.term %><% end %></p>
+        <% end %>
       <% end %>
-    <% end %>
-    <%= button_to 'Slackに送る', button_path, method: :get, title: "Slackへの送信の確認", data: {confirm: '本当に送りますか？', cancel: "やめる", commit: "送る"} %>
+      </div>
+    </div>
+
+    <p><%= link_to '新しい単語の登録', new_word_path, class: :link_button %></p>
+    <p class="words_list_footer">登録単語数&nbsp全<%= @words.size %>個</p>
+  </div>
+
+  <div class="words_test">
+    <h1>単語テスト</h1>
+    <div class="words_test_inner">
+      <% if @words.present? %>
+        <div class="random_tester">
+          <%= @random_word.term %>
+          <p>あとでカバーかけてあげるjavascript
+            <%= @random_word.memo %>
+          </p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="banner">
+      <ul>
+          <li>This is a slide.</li>
+          <li>This is another slide.</li>
+          <li>This is a final slide.</li>
+      </ul>
+  </div>
+
+
+  <div class="words_to_slack">
+    <h1>Slackで共有</h1>
+    <div class="send_registered_words_of_the_day">
+      <p>今日登録した単語をslackに送りましょう（参照チャンネル　#test_kaoru2）</p>
+        <% @registered_words_of_the_day.each do |my_registered_word| %>
+          <% if my_registered_word.user_id == current_user.id %>
+            <%= link_to my_registered_word.term, word_path(my_registered_word.id) %>
+          <% end %>
+        <% end %>
+        <%= button_to 'Slackに送る', button_path, class: :button, method: :get, title: "Slackへの送信の確認", data: {confirm: '本当に送りますか？', cancel: "やめる", commit: "送る"} %>
+    </div>
+  </div>
 </div>

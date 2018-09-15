@@ -3,12 +3,16 @@
   <tr>
     <th>単語</th>
     <th>説明</th>
+    <th>登録日</th>
   </tr>
 
   <tr>
     <td><%= @word.term %></td>
     <td><%= @word.memo %></td>
+    <td><%= @word.created_at.strftime('%Y/%m/%d %H:%M') %></td>
   </tr>
 </table>
 
-<%= link_to "戻る", user_path(current_user.id) %>
+<%= link_to '編集', edit_word_path(@word.id), class: :link_button %>
+<%= link_to '削除', word_path(@word.id), class: :link_button, method: :delete, title: "削除の確認", data: {confirm: '本当に削除しますか？', cancel: "やめる", commit: "削除する"} %>
+<%= link_to "戻る", words_path(current_user.id), class: :link_button %>

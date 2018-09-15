@@ -164,7 +164,6 @@
   font-size: 25px;
 }
 
-
 .sign_in_inner p {
   font-size: 10px;
   color: #ff0000;
@@ -206,21 +205,66 @@ input[type="email"] {
   height: 40px;
 }
 
- #profile_picture {
-   height: 40px;
-   line-height: 40px;
- }
-
-.button {
-  width: 200px;
+#profile_picture {
   height: 40px;
+  line-height: 40px;
+}
+
+// users/show.html.erb
+.profile_picture {
+  margin: 5% 5% 0 0;
+  padding: 5% 5% 5% 5%;
+  z-index: 5;
+  float: right;
+}
+
+.profile_picture:after {
+  clear: right;
+}
+
+.profile_top {
+  margin: 5%;
+  padding: 5%;
+  background: #aedbf9;
+  box-shadow: 0px 0px 0px 5px #aedbf9;
+  border: dashed 2px white;
+}
+
+.profile_top .title {
+  font-weight: bold;
+}
+
+.profile_top a {
+  text-decoration: underline;
   color: #444;
 }
 
-.button:hover {
-  cursor: pointer;
-  background-color: #24a4fb;
+.profile_top a:hover {
+  text-decoration: none;
   color: #fff;
+  text-shadow: 1px 1px 1px #000;
+}
+
+.profile_top table {
+  margin-top: 50px;
+  margin-left: 50px;
+  width: 60%;
+}
+
+.profile_top td {
+  padding: 10px;
+}
+
+.profile_charts {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chart {
+  margin: 2% 2% 10% 2%;
+  text-align: center;
 }
 
 /* #################### Responsive Design 812px以下 #################### */
@@ -228,5 +272,16 @@ input[type="email"] {
   // users/new.html.erb
   .feature_one, .feature_two {
     width: 100%;
+  }
+
+  // users/show.html.erb
+  .profile_top table {
+    margin-top: 5%;
+    margin-left: 5%;
+    width: auto;
+  }
+
+  .profile_picture {
+    padding-right: 5%;
   }
 }

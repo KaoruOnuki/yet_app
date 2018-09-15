@@ -1,0 +1,106 @@
+// words/index.html.erb
+.words_search {
+  margin-bottom: 10%;
+}
+
+.clear_button {
+  font-size: 10px;
+  color: #ff0000;
+}
+
+.clear_button:hover {
+  color: #ff0000;
+  text-decoration: underline;
+}
+
+input[type="search"] {
+  width: 300px;
+  height: 40px;
+}
+
+.words_list {
+  margin: 10%;
+  padding: 5%;
+  background: #aedbf9;
+  box-shadow: 0px 0px 0px 5px #aedbf9;
+  border: dashed 2px white;
+  height: 850px;
+}
+.words_list_inner {
+  position: relative;
+}
+
+.words_list_inner_body {
+  padding: 5%;
+  width: 100%;
+  color: #444;
+  overflow: scroll;
+  height: 650px;
+}
+
+.words_list_inner_body p {
+  margin-top: 40px;
+  margin-bottom: 0px;
+  font-size: 20px;
+}
+
+.words_list_inner_body a {
+  padding: 0 40px;
+}
+
+
+.words_list_inner_header .row {
+  position: absolute;
+  top: 0;
+  margin-left: 0;
+  width: 100%;
+  height: 50px;
+  background: #aedbf9;
+  box-shadow: 0px 0px 0px 5px #aedbf9;
+  border: dashed 2px white;
+}
+
+.words_list_inner a {
+  text-decoration: none;
+  color: #444;
+  margin: 0 auto;
+  height: 50px;
+  line-height: 50px;
+}
+
+.words_list_inner a:hover {
+  text-decoration: none;
+  color: #fff;
+  text-shadow: 1px 1px 1px #000;
+}
+
+.words_list .link_button {
+  border: 1px solid #fff;
+}
+
+.words_list_footer {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  text-align: right;
+  font-weight: bold;
+  color: #24a4fb;
+  box-shadow: 0px 0px 0px 5px #aedbf9;
+  border-top: dashed 2px white;
+}
+
+.words_to_slack {
+  margin-top: 10%;
+}
+
+
+.banner { position: relative; overflow: auto; }
+    .banner li { list-style: none; }
+        .banner ul li { float: left; }
+
+/* #################### Responsive Design 812px以下 #################### */
+@media (max-width: 812px) {
+  // words/index.html.erb
+
+
+}

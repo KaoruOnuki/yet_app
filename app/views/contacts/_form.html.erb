@@ -9,8 +9,7 @@
     </div>
   <% end %>
   <%= form.label :内容を編集してください %>
-  <%= form.text_area :content, id: :contact_content %>
-
+  <%= form.text_area :content, id: :contact_content, class: :contact_form_input_field %>
   <div class="explanation">
     <p>登録完了後、ご指定のメールアドレスに確認メールが届きます。<br>*もし指定がなければ下記のメールアドレスにメールが届きます。</p>
   </div>
@@ -18,16 +17,16 @@
   <div class="input_column">
     <table>
       <tr>
-        <td><%= form.label :name %></td>
+        <td><%= form.label :名前 %></td>
         <td><%= form.text_field :name, id: :contact_name, :placeholder => current_user.name %></td>
       </tr>
 
       <tr>
-        <td><%= form.label :email %></td>
+        <td><%= form.label :メールアドレス %></td>
         <td><%= form.text_field :email, id: :contact_email, :placeholder => current_user.email %></td>
       </tr>
     </table>
   </div>
 
-  <%= form.submit "登録する" %>
+  <%= form.submit "登録する", class: :button %>
 <% end %>

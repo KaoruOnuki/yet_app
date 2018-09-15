@@ -1,2 +1,32 @@
-<%= render 'form', user: @user %>
-<%= link_to 'マイページに戻る', user_path(@user) %>
+<div class="container">
+  <h1>プロフィール編集</h1>
+  <%= form_with(model: @user, local: true) do |f| %>
+    <div class="row">
+      <%= f.label :profile_picture %>
+      <%= image_tag(@user.profile_picture.url) if @user.profile_picture.url.present? %>
+      <%= f.file_field :profile_picture, id: :profile_picture %>
+      <%= f.hidden_field :profile_picture_cache %>
+    </div>
+
+    <div class="row">
+      <%= f.label :target_of_the_day %>
+      <%= f.number_field :target_of_the_day, min: 1, max: 200 %>
+    </div>
+
+    <div class="row">
+      <%= f.label :target_of_the_week %>
+      <%= f.number_field :target_of_the_week, min: 1, max: 2000 %>
+    </div>
+
+    <div class="row">
+      <%= f.label :target_of_the_month %>
+      <%= f.number_field :target_of_the_month, min: 1, max: 10000 %>
+    </div>
+
+    <div class="row">
+      <%= f.submit "アップデート", class: :button %>
+    </div>
+  <% end %>
+
+  <%= link_to 'マイページに戻る', user_path(@user), class: :link_button %>
+</div>

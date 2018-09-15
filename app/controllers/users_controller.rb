@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
-  before_action :redirect_if_not_logged_in, only: [:index, :create, :show, :edit, :update]
+  before_action :redirect_if_not_logged_in, only: [:index, :show, :edit, :update]
   before_action :redirect_if_wrong_user, only: [:show, :edit, :update]
 
   def index
     @users = User.all
+    @user = current_user
   end
 
   def new
@@ -14,6 +15,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      flash[:success] = "アカウントを作成しました"
       redirect_to user_path(@user.id)
     else
       render 'new'

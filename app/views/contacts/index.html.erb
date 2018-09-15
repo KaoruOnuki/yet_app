@@ -1,29 +1,29 @@
-<h1>お問い合わせ履歴</h1>
-<table>
-  <thead>
-    <tr>
-      <th>お名前</th>
-      <th>登録メールアドレス</th>
-      <th>お問い合わせ内容</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<div class="container">
+  <h1>お問い合わせ履歴</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>お名前</th>
+        <th>登録メールアドレス</th>
+        <th>お問い合わせ内容</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
 
-  <tbody>
-    <% @contacts.each do |contact| %>
-     <% if contact.user_id == current_user.id %>
-        <tr>
-          <td><%= contact.name %></td>
-          <td><%= contact.email %></td>
-          <td><%= contact.content %></td>
-          <td><%= link_to '詳細', contact %></td>
-          <td><%= link_to '編集', edit_contact_path(contact) %></td>
-          <td><%= link_to '削除', contact, method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
-        </tr>
+    <tbody>
+      <% @contacts.each do |contact| %>
+       <% if contact.user_id == current_user.id %>
+          <tr>
+            <td><%= contact.name %></td>
+            <td><%= contact.email %></td>
+            <td><%= contact.content %></td>
+            <td><%= link_to '詳細', contact %></td>
+          </tr>
+        <% end %>
       <% end %>
-    <% end %>
-  </tbody>
-</table>
-<p><%= link_to '新しいお問い合わせをする', new_contact_path %></p>
+    </tbody>
+  </table>
+  <p><%= link_to '新しいお問い合わせ', new_contact_path, class: :link_button %></p>
+</div>

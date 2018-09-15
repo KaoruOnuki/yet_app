@@ -1,37 +1,105 @@
-<h1><%= @user.name %>のページ</h1>
-<p>Eメールアドレス:<%= @user.email %></p>
+<div class="container">
+  <div class="profile_title">
+    <h1><%= @user.name %>のページ</h1>
+  </div>
 
-<%= image_tag(@user.profile_picture.url) if @user.profile_picture.url.present? %>
-<p>1日のターゲット:<%= @user.target_of_the_day if @user.target_of_the_day.present? %></p>
-<p>1週間のターゲット:<%= @user.target_of_the_week if @user.target_of_the_week.present? %></p>
-<p>1ヶ月のターゲット:<%= @user.target_of_the_month if @user.target_of_the_month.present? %></p>
-<p><%= link_to "プロフィール編集", edit_user_path(@user.id) %></p>
+  <div class="profile_picture">
+    <%= link_to image_tag(@user.profile_picture.url, { border: '0', alt: 'プロフィール画像'}), edit_user_path(@user.id) if @user.profile_picture.url.present? %>
+  </div>
 
+  <div class="profile_top">
+    <table>
+      <tr class="row">
+        <td class="col-md-12 col-lg-6 title">Eメールアドレス</td>
+        <td class="col-md-12 col-lg-6"><%= @user.email %></td>
+      </tr>
 
-<%= pie_chart @chart_data_of_the_day, donut: true, height: "200px", refresh: 60, colors: ["#24a4fb", "#ddd"] %>
-<% if @user.target_of_the_day.present? && @user.target_of_the_day <= @number_of_words_today %>
-  <h2>目標達成おめでとう！頑張ってるね</h2>
-<% end %>
+      <tr class="row">
+        <td class="col-md-12 col-lg-6 title">フォローユーザー</td>
+        <td class="col-md-12 col-lg-6">
+          <% if @followings.present? %>
+            <% @followings.each do |following| %>
+              <%= following.followed.name %>さん&emsp;
+            <% end %>
+          <% else %>
+            <%= link_to "登録ユーザーはいません", users_path %>
+          <% end %>
+        </td>
+      </tr>
 
-<%= pie_chart @chart_data_of_the_week, donut: true, height: "200px", refresh: 60, colors: ["#24a4fb", "#ddd"] %>
-<% if @user.target_of_the_week.present? && @user.target_of_the_week <= @number_of_words_this_week%>
-  <h2>目標達成おめでとう！頑張ってるね</h2>
-<% end %>
+      <tr class="row">
+        <td class="col-md-12 col-lg-6 title">フォロワーユーザー</td>
+        <td class="col-md-12 col-lg-6">
+          <% if @follows.present? %>
+            <% @follows.each do |follow| %>
+              <%= follow.follower.name %>
+            <% end %>
+          <% else %>
+            <%= link_to "登録ユーザーはいません", users_path %>
+          <% end %>
+        </td>
+      </tr>
 
-<%= pie_chart @chart_data_of_the_month, donut: true, height: "200px", refresh: 60, colors: ["#24a4fb", "#ddd"] %>
-<% if @user.target_of_the_month.present? && @user.target_of_the_month <= @number_of_words_this_month %>
-  <h2>目標達成おめでとう！頑張ってるね</h2>
-<% end %>
+      <tr class="row">
+        <td class="col-md-12 col-lg-6 title">1日のターゲット</td>
+        <td class="col-md-12 col-lg-6">
+        <% if @user.target_of_the_day.present? %>
+          <%= link_to @user.target_of_the_day, edit_user_path(@user.id)  %>
+        <% else %>
+          <%= link_to "ターゲットが設定されていません", edit_user_path(@user.id) %>
+        <% end %>
+        </td>
+      </tr>
 
-<p><%= link_to "単語一覧", words_path %></p>
-<p><%= link_to '新しいお問い合わせをする', new_contact_path %></p>
+      <tr class="row">
+        <td class="col-md-12 col-lg-6 title">1週間のターゲット</td>
+        <td class="col-md-12 col-lg-6">
+        <% if @user.target_of_the_week.present? %>
+          <%= link_to @user.target_of_the_week, edit_user_path(@user.id) %>
+        <% else %>
+          <%= link_to "ターゲットが設定されていません", edit_user_path(@user.id) %>
+        <% end %>
+        </td>
+      </tr>
 
-<h2>フォローユーザー一覧</h2>
-<% @followings.each do |following| %>
-  <%= following.followed.name %>
-<% end %>
+      <tr class="row">
+        <td class="col-md-12 col-lg-6 title">1ヶ月のターゲット</td>
+        <td class="col-md-12 col-lg-6">
+        <% if @user.target_of_the_month.present? %>
+          <%= link_to @user.target_of_the_month, edit_user_path(@user.id) %>
+        <% else %>
+          <%= link_to "ターゲットが設定されていません", edit_user_path(@user.id) %>
+        <% end %>
+        </td>
+      </tr>
+    </table>
+  </div>
 
-<h2>フォロワーユーザー一覧</h2>
-<% @follows.each do |follow| %>
-  <%= follow.follower.name %>
-<% end %>
+  <div class="profile_charts row">
+    <div class="chart">
+      <h4>1日のターゲット</h4>
+      <%= pie_chart @chart_data_of_the_day, donut: true, height: "200px", refresh: 60, colors: ["#24a4fb", "#ddd"] %>
+      <% if @user.target_of_the_day.present? && @user.target_of_the_day <= @number_of_words_today %>
+        <h2>目標達成おめでとう！頑張ってるね</h2>
+      <% end %>
+    </div>
+
+    <div class="chart">
+      <h4>1週間のターゲット</h4>
+      <%= pie_chart @chart_data_of_the_week, donut: true, height: "200px", refresh: 60, colors: ["#24a4fb", "#ddd"] %>
+      <% if @user.target_of_the_week.present? && @user.target_of_the_week <= @number_of_words_this_week%>
+        <h2>目標達成おめでとう！頑張ってるね</h2>
+      <% end %>
+    </div>
+
+    <div class="chart">
+      <h4>1ヶ月のターゲット</h4>
+      <%= pie_chart @chart_data_of_the_month, donut: true, height: "200px", refresh: 60, colors: ["#24a4fb", "#ddd"] %>
+      <% if @user.target_of_the_month.present? && @user.target_of_the_month <= @number_of_words_this_month %>
+        <h2>目標達成おめでとう！頑張ってるね</h2>
+      <% end %>
+    </div>
+  </div>
+
+  <p><%= link_to "単語登録をはじめる", words_path, class: :link_button %></p>
+</div>

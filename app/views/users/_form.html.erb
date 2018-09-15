@@ -1,34 +1,10 @@
 <div class="container">
   <div class="sign_in_inner">
     <% if logged_in? %>
-      <h1>プロフィール編集</h1>
-      <%= form_with(model: user, local: true) do |f| %>
-        <div class="row">
-          <%= f.label :profile_picture %>
-          <%= image_tag(@user.profile_picture.url) if @user.profile_picture.url.present? %>
-          <%= f.file_field :profile_picture, id: :profile_picture %>
-          <%= f.hidden_field :profile_picture_cache %>
-        </div>
-
-        <div class="row">
-          <%= f.label :target_of_the_day %>
-          <%= f.number_field :target_of_the_day, min: 1, max: 200 %>
-        </div>
-
-        <div class="row">
-          <%= f.label :target_of_the_week %>
-          <%= f.number_field :target_of_the_week, min: 1, max: 2000 %>
-        </div>
-
-        <div class="row">
-          <%= f.label :target_of_the_month %>
-          <%= f.number_field :target_of_the_month, min: 1, max: 10000 %>
-        </div>
-
-        <div class="row">
-          <%= f.submit "アップデート" %>
-        </div>
-      <% end %>
+      <h1>Hi <%= current_user.name %>さん</h1>
+      <h4>単語を覚えるのは大変ですよね。お疲れ様。</h4>
+      <h4>頑張っているあなたは素敵です。</h4>
+      <%= link_to 'さあ、もうひと頑張り。マイページに戻る', user_path(current_user), class: :link_button %>
     <% else %>
       <h1>サインアップ</h1>
       <p>*入力必須事項</p>

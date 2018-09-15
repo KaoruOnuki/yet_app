@@ -4,19 +4,26 @@
     </div>
 
     <div class="login_inner">
-      <h1>ログイン</h1>
-      <%= form_with(scope: :session, url: sessions_path, local:true) do |f| %>
-        <div class="row">
-          <%= f.label :メールアドレス %>
-          <%= f.email_field :email %>
-        </div>
+      <% if logged_in? %>
+        <h1>Hi <%= current_user.name %>さん</h1>
+        <h4>単語を覚えるのは大変ですよね。お疲れ様。</h4>
+        <h4>頑張っているあなたは素敵です。</h4>
+        <%= link_to 'さあ、もうひと頑張り。マイページに戻る', user_path(current_user), class: :link_button %>
+      <% else %>
+        <h1>ログイン</h1>
+        <%= form_with(scope: :session, url: sessions_path, local:true) do |f| %>
+          <div class="row">
+            <%= f.label :メールアドレス %>
+            <%= f.email_field :email %>
+          </div>
 
-        <div class="row">
-          <%= f.label :パスワード %>
-          <%= f.password_field :password %>
-        </div>
+          <div class="row">
+            <%= f.label :パスワード %>
+            <%= f.password_field :password %>
+          </div>
 
-        <%= f.submit "ログイン", class: :button %>
+          <%= f.submit "ログイン", class: :button %>
+        <% end %>
       <% end %>
     </div>
   </div>
