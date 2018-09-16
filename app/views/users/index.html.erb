@@ -3,26 +3,44 @@
 
   <div class="other_users">
   <% @users.order('id desc').each do |user| %>
-    <div class="other_user">
     <% if user.id != current_user.id %>
-      <div>
-        <%= image_tag(user.profile_picture.url, { border: '0', alt: 'プロフィール画像'}) if user.profile_picture.url.present? %>
+      <div class="other_user row">
+        <div class="item name col-lg-12">
+          <% if current_user.following?(user) %>
+            <i class="far fa-handshake"></i>
+          <% end %>
+          <%= user.name %>さん
+        </div>
       </div>
-      <div>
-        <%= user.name %>さん
+
+      <div class="other_user_content row">
+        <div class="user_pic col-md-12 col-lg-3">
+          <% if user.profile_picture.url.present? %>
+            <%= image_tag(user.profile_picture.url, { border: '0', alt: 'プロフィール画像', height: 50 }) %>
+          <% else %>
+            <i class="fas fa-user-alt"></i>
+          <% end %>
+        </div>
+
+        <div class="item col-md-12 col-lg-3">
+          登録単語数&nbsp全<%= Word.select{|x| x.user_id == user.id}.size %>個
+        </div>
+
+        <div class="item col-md-6 col-lg-3">
+          <%= link_to "メッセージを送る", conversations_path(sender_id: current_user.id, recipient_id: user.id), method: :post, class: :link_button %>
+        </div>
+
+        <div class="item col-md-6 col-lg-3">
+          <%= render 'follow_form', user: user %>
+        </div>
       </div>
-      <div>
-        単語登録数<%= Word.select{|x| x.user_id == user.id}.size %>
-      </div>
-      <div class="item">
-        <%= link_to "メッセージ", conversations_path(sender_id: current_user.id, recipient_id: user.id), method: :post, class: :link_button %>
-      </div>
-      <%= render 'follow_form', user: user %>
-      <p>---------------------------</p>
     <% end %>
-    </div>
   <% end %>
   </div>
 
-  <%= link_to 'マイページに戻る', user_path(@user), class: :link_button %>
+  <div class="column-footer">
+    <%= link_to user_path(@user), class: :link_button do %>
+      <i class="fas fa-arrow-left"></i>
+    <% end %>
+  </div>
 </div>

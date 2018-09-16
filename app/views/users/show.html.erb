@@ -1,6 +1,6 @@
 <div class="container">
   <div class="profile_title">
-    <h1><%= @user.name %>のページ</h1>
+    <h1><%= @user.name %>さんのページ</h1>
   </div>
 
   <div class="profile_picture">
@@ -10,16 +10,16 @@
   <div class="profile_top">
     <table>
       <tr class="row">
-        <td class="col-md-12 col-lg-6 title">Eメールアドレス</td>
-        <td class="col-md-12 col-lg-6"><%= @user.email %></td>
+        <td class="col-md-12 col-lg-5 title">Eメールアドレス</td>
+        <td class="col-md-12 col-lg-7"><%= @user.email %></td>
       </tr>
 
       <tr class="row">
-        <td class="col-md-12 col-lg-6 title">フォローユーザー</td>
-        <td class="col-md-12 col-lg-6">
+        <td class="col-md-12 col-lg-5 title">お気に入りユーザー</td>
+        <td class="col-md-12 col-lg-7">
           <% if @followings.present? %>
-            <% @followings.each do |following| %>
-              <%= following.followed.name %>さん&emsp;
+            <%= link_to users_path do %>
+              <%= @followings.size %>名
             <% end %>
           <% else %>
             <%= link_to "登録ユーザーはいません", users_path %>
@@ -28,21 +28,21 @@
       </tr>
 
       <tr class="row">
-        <td class="col-md-12 col-lg-6 title">フォロワーユーザー</td>
-        <td class="col-md-12 col-lg-6">
+        <td class="col-md-12 col-lg-5 title">あなたのフォロワー</td>
+        <td class="col-md-12 col-lg-7">
           <% if @follows.present? %>
             <% @follows.each do |follow| %>
-              <%= follow.follower.name %>
+              <%= follow.follower.name %>さん&nbsp
             <% end %>
           <% else %>
-            <%= link_to "登録ユーザーはいません", users_path %>
+            <%= link_to "現在フォロワーはいません", users_path %>
           <% end %>
         </td>
       </tr>
 
       <tr class="row">
-        <td class="col-md-12 col-lg-6 title">1日のターゲット</td>
-        <td class="col-md-12 col-lg-6">
+        <td class="col-md-12 col-lg-5 title">1日のターゲット</td>
+        <td class="col-md-12 col-lg-7">
         <% if @user.target_of_the_day.present? %>
           <%= link_to @user.target_of_the_day, edit_user_path(@user.id)  %>
         <% else %>
@@ -52,8 +52,8 @@
       </tr>
 
       <tr class="row">
-        <td class="col-md-12 col-lg-6 title">1週間のターゲット</td>
-        <td class="col-md-12 col-lg-6">
+        <td class="col-md-12 col-lg-5 title">1週間のターゲット</td>
+        <td class="col-md-12 col-lg-7">
         <% if @user.target_of_the_week.present? %>
           <%= link_to @user.target_of_the_week, edit_user_path(@user.id) %>
         <% else %>
@@ -63,8 +63,8 @@
       </tr>
 
       <tr class="row">
-        <td class="col-md-12 col-lg-6 title">1ヶ月のターゲット</td>
-        <td class="col-md-12 col-lg-6">
+        <td class="col-md-12 col-lg-5 title">1ヶ月のターゲット</td>
+        <td class="col-md-12 col-lg-7">
         <% if @user.target_of_the_month.present? %>
           <%= link_to @user.target_of_the_month, edit_user_path(@user.id) %>
         <% else %>
@@ -73,6 +73,10 @@
         </td>
       </tr>
     </table>
+
+    <div class="profle_edit_link">
+      <%= link_to "プロフィール編集", edit_user_path(@user.id), class: :link_button %>
+    </div>
   </div>
 
   <div class="profile_charts row">
@@ -80,7 +84,7 @@
       <h4>1日のターゲット</h4>
       <%= pie_chart @chart_data_of_the_day, donut: true, height: "200px", refresh: 60, colors: ["#24a4fb", "#ddd"] %>
       <% if @user.target_of_the_day.present? && @user.target_of_the_day <= @number_of_words_today %>
-        <h2>目標達成おめでとう！頑張ってるね</h2>
+        <h5>目標達成おめでとう！<br>頑張っていますね</h5>
       <% end %>
     </div>
 
@@ -88,7 +92,7 @@
       <h4>1週間のターゲット</h4>
       <%= pie_chart @chart_data_of_the_week, donut: true, height: "200px", refresh: 60, colors: ["#24a4fb", "#ddd"] %>
       <% if @user.target_of_the_week.present? && @user.target_of_the_week <= @number_of_words_this_week%>
-        <h2>目標達成おめでとう！頑張ってるね</h2>
+        <h5>目標達成おめでとう！<br>頑張っていますね</h5>
       <% end %>
     </div>
 
@@ -96,7 +100,7 @@
       <h4>1ヶ月のターゲット</h4>
       <%= pie_chart @chart_data_of_the_month, donut: true, height: "200px", refresh: 60, colors: ["#24a4fb", "#ddd"] %>
       <% if @user.target_of_the_month.present? && @user.target_of_the_month <= @number_of_words_this_month %>
-        <h2>目標達成おめでとう！頑張ってるね</h2>
+        <h5>目標達成おめでとう！<br>頑張っていますね</h5>
       <% end %>
     </div>
   </div>

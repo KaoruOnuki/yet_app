@@ -12,3 +12,14 @@ ja:
         target_of_the_day: "1日のターゲット"
         target_of_the_week: "1週間のターゲット"
         target_of_the_month: "1ヶ月のターゲット"
+    models:
+      word: "単語"
+    attributes:
+      word:
+        term: "単語"
+        memo: "意味、説明"
+    models:
+      contact: "お問い合わせ"
+    attributes:
+      contact:
+        content: "内容"

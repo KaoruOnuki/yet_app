@@ -1,7 +1,11 @@
 <div class="container">
   <h1>お問い合わせフォーム</h1>
-  <%= render 'form', contact: @contact %>
+  <div class="column-footer">
+    <%= link_to user_path(@user), class: :link_button do %>
+      <i class="fas fa-arrow-left"></i>
+    <% end %>
+    <%= link_to "過去のお問い合わせ", contacts_path, class: :link_button %>
+  </div>
 
-  <p><%= link_to "お問い合わせ履歴", contacts_path, class: :link_button %></p>
-  <p><%= link_to 'マイページに戻る', user_path(@user), class: :link_button %></p>
+  <%= render 'form', contact: @contact %>
 </div>

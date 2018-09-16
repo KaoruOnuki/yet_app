@@ -30,7 +30,7 @@
       <div class="top_menu">
         <ul>
         <% unless logged_in? %>
-          <li><%= link_to_unless_current "サインアップ", new_user_path %><i class="fas fa-circle"></i></li>
+          <li><%= link_to_unless_current "アカウント登録", new_user_path %><i class="fas fa-circle"></i></li>
           <li><%= link_to_unless_current "ログイン", new_session_path %><i class="fas fa-circle"></i></li>
         <% end %>
         </ul>
@@ -50,13 +50,7 @@
       <div class="footer_overlay">
       </div>
 
-      <div class="footer_logo">
-        LOGO
-        <%#= image_tag "logo" %>
-      </div>
-
       <div class="footer_inner">
-        <h2>YET</h2>
         <p>Graduation assignment by Kaoru Onuki 201804<br>@DIVE INTO CODE Corp.</p>
       </div>
     </footer>

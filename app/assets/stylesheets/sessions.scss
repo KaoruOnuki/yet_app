@@ -2,3 +2,11 @@
 .login_inner {
   margin: 30% 0 0 0;
 }
+
+/* #################### Responsive Design 812px以下 #################### */
+@media (max-width: 812px) {
+  // users/new.html.erb
+  .login_inner {
+    margin-left: 10%;
+  }
+}

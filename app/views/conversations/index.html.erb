@@ -1,13 +1,18 @@
 <div class="container">
-  <h2>チャット記録</h2>
+  <h2>チャットルーム一覧</h2>
   <div class="message_banner">
-    <p><%= link_to 'ユーザー一覧', users_path %>から友達の輪を広げましょう</p>
+    <p><%= link_to 'ユーザー一覧', users_path %>からメッセージが送れます。友達の輪を広げましょう。</p>
   </div>
   <% @conversations.each do |conversation| %>
     <% if conversation.target_user(current_user).present? %>
-      <p><%= link_to conversation.target_user(current_user).name, conversation_messages_path(conversation) %>さんとのチャット記録</p>
+    <div class="message_inner">
+      <p class="message_title"><i class="fas fa-comments"></i>&nbsp<%= conversation.target_user(current_user).name %>さんとのチャットルーム</p>
+      <p class="message_content"><%= link_to conversation_messages_path(conversation) do %>過去のチャットを確認する<% end %></p>
+    </div>
     <% end %>
   <% end %>
 
-  <%= link_to 'マイページに戻る', user_path(@user), class: :link_button %>
+  <%= link_to user_path(@user), class: :link_button do %>
+    <i class="fas fa-arrow-left"></i>
+  <% end %>
 </div>

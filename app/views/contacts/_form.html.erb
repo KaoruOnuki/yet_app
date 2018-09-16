@@ -1,32 +1,30 @@
-<%= form_with(model: contact, local: true) do |form| %>
-  <% if contact.errors.any? %>
-    <div id="error_explanation">
-      <ul>
-        <% contact.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
+<div class="new_contact">
+  <%= form_with(model: contact, local: true) do |form| %>
+    <% if contact.errors.any? %>
+      <div id="error_explanation">
+        <ul>
+          <% contact.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= form.label :お問い合わせ内容 %>
+    <%= form.text_area :content, id: :contact_content, class: :contact_form_input_field %>
+      <div class="caution">
+        <p>送信完了後、ご指定のメールアドレスに確認メールが届きます<br>もし指定がなければ下記のメールアドレスにメールが届きます</p>
+      </div>
+
+      <div class="row">
+        <%= form.label :名前 %>
+        <%= form.text_field :name, id: :contact_name, placeholder: current_user.name %>
+      </div>
+
+      <div class="row">
+        <%= form.label :メールアドレス %>
+        <%= form.text_field :email, id: :contact_email, placeholder: current_user.email %>
+      </div>
+    <%= form.submit "送信する", class: :button, title: "送信の確認", data: {confirm: '本当に送りますか？', cancel: "やめる", commit: "送る"} %>
   <% end %>
-  <%= form.label :内容を編集してください %>
-  <%= form.text_area :content, id: :contact_content, class: :contact_form_input_field %>
-  <div class="explanation">
-    <p>登録完了後、ご指定のメールアドレスに確認メールが届きます。<br>*もし指定がなければ下記のメールアドレスにメールが届きます。</p>
-  </div>
-
-  <div class="input_column">
-    <table>
-      <tr>
-        <td><%= form.label :名前 %></td>
-        <td><%= form.text_field :name, id: :contact_name, :placeholder => current_user.name %></td>
-      </tr>
-
-      <tr>
-        <td><%= form.label :メールアドレス %></td>
-        <td><%= form.text_field :email, id: :contact_email, :placeholder => current_user.email %></td>
-      </tr>
-    </table>
-  </div>
-
-  <%= form.submit "登録する", class: :button %>
-<% end %>
+</div>

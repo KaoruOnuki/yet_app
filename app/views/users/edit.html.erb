@@ -1,25 +1,27 @@
-<div class="container">
+<div class="container edit_profile">
   <h1>プロフィール編集</h1>
+
+  <div class="edit_profile_inner">
   <%= form_with(model: @user, local: true) do |f| %>
     <div class="row">
-      <%= f.label :profile_picture %>
-      <%= image_tag(@user.profile_picture.url) if @user.profile_picture.url.present? %>
+      <%= f.label "プロフィール用画像" %>
       <%= f.file_field :profile_picture, id: :profile_picture %>
       <%= f.hidden_field :profile_picture_cache %>
+      <%= image_tag(@user.profile_picture.url) if @user.profile_picture.url.present? %>
     </div>
 
     <div class="row">
-      <%= f.label :target_of_the_day %>
+      <%= f.label "1日のターゲット" %>
       <%= f.number_field :target_of_the_day, min: 1, max: 200 %>
     </div>
 
     <div class="row">
-      <%= f.label :target_of_the_week %>
+      <%= f.label "1週間のターゲット" %>
       <%= f.number_field :target_of_the_week, min: 1, max: 2000 %>
     </div>
 
     <div class="row">
-      <%= f.label :target_of_the_month %>
+      <%= f.label "1ヶ月のターゲット" %>
       <%= f.number_field :target_of_the_month, min: 1, max: 10000 %>
     </div>
 
@@ -27,6 +29,9 @@
       <%= f.submit "アップデート", class: :button %>
     </div>
   <% end %>
+  </div>
 
-  <%= link_to 'マイページに戻る', user_path(@user), class: :link_button %>
+  <%= link_to user_path(@user), class: :link_button do %>
+    <i class="fas fa-arrow-left"></i>
+  <% end %>
 </div>

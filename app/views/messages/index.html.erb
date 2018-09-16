@@ -1,42 +1,70 @@
-<% if @over_ten %>
-  <%= link_to '以前のメッセージ', '?m=all' %>
-<% end %>
+<div class="container">
+  <h2>チャットルーム <%= @conversation.recipient.name %>さん</h2>
 
-<div class="ui segment">
-  <% @messages.each do |message| %>
-    <% if message.body %>
-      <% user = User.find(message.user_id) %>
-
-      <div class="item">
-        <div class="content">
-          <div class="header">
-            <strong><%= user.name %></strong>
-            <%= message.message_time %>
-          </div>
-
-          <div class="list">
-            <div class="item">
-              <i class="right trianle icon"></i>
-              <%= message.body %>
+  <div class="convo_inner">
+    <% @messages.each do |message| %>
+      <% if message.body %>
+        <% user = User.find(message.user_id) %>
+        <% if user.name == current_user.name %>
+          <div class="convo_item my_item">
+            <div class="convo_content my_content">
+              <div class="convo_list my_list">
+                <%= message.body %>
+              </div>
+              <div class="convo_header my_header">
+                あなた
+                <% if user.profile_picture.url.present? %>
+                  <%= image_tag(user.profile_picture.url, { border: '0', alt: 'プロフィール画像', height: 50 }) %>
+                <% else %>
+                  <i class="fas fa-user-alt"></i>
+                <% end %>
+                <div class="convo_time my_time">
+                  <%= message.created_at.strftime('%Y/%m/%d %H:%M') %>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        <% else %>
+          <div class="convo_item">
+            <div class="convo_content">
+              <div class="convo_list">
+                <%= message.body %>
+              </div>
 
+              <div class="convo_header">
+                <% if user.profile_picture.url.present? %>
+                  <%= image_tag(user.profile_picture.url, { border: '0', alt: 'プロフィール画像', height: 50 }) %>
+                <% else %>
+                  <i class="fas fa-user-alt"></i>
+                <% end %>
+                <%= user.name %>さん
+                <div class="convo_time">
+                  <%= message.created_at.strftime('%Y/%m/%d %H:%M') %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
     <% end %>
+  </div>
+
+  <%= form_with(model: [@conversation, @message]) do |f| %>
+    <div class="field">
+      <%= f.text_area :body, class: "form-control", placeholder: "メッセージを書く" %>
+      <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
+    </div>
+
+    <div class="message_button">
+      <%= f.submit "メッセージを送る", class: :button %>
+    </div>
   <% end %>
+
+  <div class="column-footer">
+    <% if @over_five %>
+      <%= link_to '履歴を全て見る', '?m=all', class: :link_button %>
+    <% end %>
+    <p><%= link_to 'チャットルーム一覧に戻る', conversations_path, class: :link_button %></p>
+    <p><%= link_to 'ユーザー一覧に戻る', users_path, class: :link_button %></p>
+  </div>
 </div>
-
-<%= form_with(model: [@conversation, @message]) do |f| %>
-  <div class="field">
-    <%= f.text_area :body, class: "form-control" %>
-  </div>
-    <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
-
-  <div>
-    <%= f.submit "メッセージを送る" %>
-  </div>
-<% end %>
-
-<%= link_to 'メッセージ一覧に戻る', conversations_path %>
-<%= link_to 'ユーザー一覧に戻る', users_path %>

@@ -1,6 +1,19 @@
-<h1>お問い合わせ詳細</h1>
-  <p>お名前：<%= @contact.name %></p>
-  <p>メールアドレス：<%= @contact.email %></p>
-  <p>お問い合わせ内容：<%= @contact.content %></p>
+<div class="container">
+  <h1>お問い合わせ内容</h1>
+    <div class="contact_details">
+      <div class="contact-date">送信日&nbsp<%= @contact.created_at.strftime('%Y/%m/%d') %></div>
+      <div class="contact_details_inner">
+        <p class="contact_details_inner_title">確認メール受け取りのメールアドレス</p>
+        <p class="contact_details_inner_explaination"><%= @contact.email %></p>
+      </div>
+
+      <div class="contact_details_inner">
+        <p class="contact_details_inner_title">お問い合わせ内容</p>
+        <p class="contact_details_inner_explaination"><%= @contact.content %></p>
+      </div>
+    </div>
+
+  <div class="column-footer">
+    <%= link_to "過去のお問い合わせ", contacts_path, class: :link_button %>
+  </div>
 </div>
-<p><%= link_to "お問い合わせ履歴", contacts_path %></p>

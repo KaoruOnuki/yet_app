@@ -1,7 +1,6 @@
 <%= form_with(model: @word, local: true, url: choose_new_or_edit) do |f| %>
   <% if @word.errors.any? %>
     <div id = "error_explanation">
-      <h2><%= @word.errors.count %>件のエラーあり</h2>
       <ul>
         <% @word.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
@@ -11,16 +10,20 @@
   <% end %>
 
   <div class="word_term">
-    <%= f.label :term %>
+    <%= f.label "単語" %>
     <%= f.text_field :term %>
   </div>
 
   <div class="word_memo">
-    <%= f.label :memo %>
-    <%= f.text_field :memo %>
+    <%= f.label "意味、説明" %>
+    <%= f.text_area :memo %>
   </div>
 
-  <%= f.submit "登録" %>
+  <%= f.submit "登録", class: :button %>
 <% end %>
 
-<%= link_to "戻る", words_path(current_user.id) %>
+<div class="column-footer">
+  <%= link_to words_path(current_user.id), class: :link_button do %>
+    <i class="fas fa-arrow-left"></i>
+  <% end %>
+</div>

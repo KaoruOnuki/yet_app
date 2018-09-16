@@ -1,3 +1,37 @@
-// Place all the styles related to the Messages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.message_inner {
+  margin: 10%;
+  padding: 10%;
+  background: #f9f3c0;
+  box-shadow: 0px 0px 0px 5px #f9f3c0;
+  border: dashed 2px white;
+  color: #3a1c01;
+}
+
+.message_content a{
+  text-decoration: underline;
+  color: #3a1c01;
+}
+
+.fa-comments {
+  font-size: 30px;
+  color: #3a1c01;
+}
+
+.message_content a:hover {
+  text-decoration: none;
+  color: #3a1c01;
+}
+
+.message_banner {
+  margin-top: 30px;
+}
+
+.message_banner a {
+  color: #444;
+  text-decoration: underline;
+}
+
+.message_banner a:hover {
+  color: #24a4fb;
+  text-decoration: none;
+}

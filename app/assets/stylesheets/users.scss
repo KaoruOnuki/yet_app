@@ -1,3 +1,66 @@
+// users/index.html.erb
+.other_users .row {
+  height: 100px;
+  line-height: 100px;
+  padding: 0;
+  margin: 0;
+  vertical-align: middle;
+}
+
+.other_user {
+  padding: 30px;
+}
+
+.other_user .item {
+  height: 100px;
+  line-height: 100px;
+}
+
+.other_user .name {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.other_user_content .user_pic .fa-user-alt {
+  font-size: 50px;
+  color: #24a4fb;
+}
+
+.other_users_content .row {
+  height: 100px;
+  line-height: 100px;
+  padding: 0;
+  margin: 0;
+  vertical-align: middle;
+}
+
+.other_user_content {
+  border-bottom: dashed 2px #aedbf9;
+  padding: 30px;
+}
+
+.other_user_content .item {
+  height: 100px;
+  line-height: 100px;
+}
+
+button.follow, button.unfollow {
+  border: 0px;
+  text-decoration: underline;
+}
+
+button.follow:hover {
+  color: #24a4fb;
+  cursor: pointer;
+  border: 0px;
+}
+
+button.unfollow:hover {
+  color: #ff0000;
+  cursor: pointer;
+  border: 0px;
+}
+
 // users/new.html.erb
 .top {
   position: relative;
@@ -185,11 +248,6 @@ input[type="text"] {
   height: 40px;
 }
 
-input[type="text"] {
-  width: 300px;
-  height: 40px;
-}
-
 input[type="password"] {
   width: 300px;
   height: 40px;
@@ -255,6 +313,20 @@ input[type="email"] {
   padding: 10px;
 }
 
+.profle_edit_link {
+  width: 100%;
+  text-align: right;
+}
+
+.profile_top .link_button {
+  border: 1px solid #fff;
+  text-decoration: none;
+}
+
+.profile_top .link_button:hover {
+  text-shadow: none;
+}
+
 .profile_charts {
   height: 100%;
   display: flex;
@@ -265,6 +337,20 @@ input[type="email"] {
 .chart {
   margin: 2% 2% 10% 2%;
   text-align: center;
+}
+
+// users/edit.html.erb
+.edit_profile_inner {
+  margin: 5%;
+  padding: 5%;
+}
+
+.edit_profile .row {
+  margin-left: 30px;
+}
+
+.edit_profile img {
+  margin-top: 10px;
 }
 
 /* #################### Responsive Design 812px以下 #################### */
@@ -283,5 +369,35 @@ input[type="email"] {
 
   .profile_picture {
     padding-right: 5%;
+  }
+
+  // users/_form.html.erb
+  .sign_in_inner {
+    margin-left: 10px;
+  }
+
+  // users/index.html.erb
+  .other_user_content .item {
+    height: 50px;
+    line-height: 50px;
+  }
+
+  .other_user_content .user_pic img, .other_user_content .user_pic i {
+    float: right;
+  }
+}
+
+@media (max-width: 1000px) {
+  // users/index.html.erb
+  .other_users .row {
+    height: auto;
+  }
+
+  .other_users .item {
+  height: auto;
+  }
+
+  .other_users .content {
+  height: auto;
   }
 }

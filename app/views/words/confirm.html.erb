@@ -1,16 +1,31 @@
-<h1>登録確認</h1>
+<div class="container">
+  <h1>登録の確認</h1>
 
-<%= form_with(model: @word, url: words_path, local: true) do |f| %>
-  <%= f.hidden_field :term %>
-  <%= f.hidden_field :memo %>
+  <%= form_with(model: @word, url: words_path, local: true) do |f| %>
+    <%= f.hidden_field :term %>
+    <%= f.hidden_field :memo %>
+    <div class="confirm_inner">
+      <div class="confirm_details">
+        <div class="confirm_details_inner">
+          <p class="confirm_details_inner_title">単語</p>
+          <p class="confirm_details_inner_explaination"><%= @word.term %></p>
+        </div>
 
-  <p>単語:<%= @word.term %></p>
-  <p>説明:<%= @word.memo %></p>
-  <%= f.submit "登録" %>
-<% end %>
+        <div class="confirm_details_inner">
+          <p class="confirm_details_inner_title">意味、説明</p>
+          <p class="confirm_details_inner_explaination word_memo_confirmation"><%= @word.memo %></p>
+        </div>
 
-<%= form_with(model: @word, url: new_word_path, local: true, method: 'get') do |f| %>
-  <%= f.hidden_field :term %>
-  <%= f.hidden_field :memo %>
-  <%= f.submit "戻る", name: 'back' %>
-<% end %>
+        <p class="register_button"><%= f.submit "登録", class: :button %></p>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="column-footer">
+  <%= form_with(model: @word, url: new_word_path, local: true, method: 'get') do |f| %>
+    <%= f.hidden_field :term %>
+    <%= f.hidden_field :memo %>
+    <%= f.submit "戻る", name: 'back', class: :button %>
+  <% end %>
+  </div>
+</div>

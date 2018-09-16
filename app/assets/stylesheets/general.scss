@@ -4,6 +4,10 @@ body {
   color: #444;
 }
 
+.column-footer {
+  margin-top: 50px;
+}
+
 // layouts/application.html.erb
 .top_menu {
   position: fixed;
@@ -131,6 +135,7 @@ footer {
 
 .footer_inner {
   margin-right: 50px;
+  margin-bottom: 50px;
 }
 
 .link_button {
@@ -170,6 +175,7 @@ footer {
     top: auto;
     bottom: 0;
     background-color: #ddd;
+    font-size: 12px;
   }
 
   .top_menu ul {

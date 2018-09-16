@@ -1,29 +1,13 @@
 <div class="container">
-  <h1>お問い合わせ履歴</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>お名前</th>
-        <th>登録メールアドレス</th>
-        <th>お問い合わせ内容</th>
-        <th></th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
+  <h1>過去のお問い合わせ</h1>
+    <p><%= link_to 'お問い合わせをする', new_contact_path, class: :link_button %></p>
 
-    <tbody>
-      <% @contacts.each do |contact| %>
-       <% if contact.user_id == current_user.id %>
-          <tr>
-            <td><%= contact.name %></td>
-            <td><%= contact.email %></td>
-            <td><%= contact.content %></td>
-            <td><%= link_to '詳細', contact %></td>
-          </tr>
-        <% end %>
-      <% end %>
-    </tbody>
-  </table>
-  <p><%= link_to '新しいお問い合わせ', new_contact_path, class: :link_button %></p>
+    <% @contacts.each do |contact| %>
+     <% if contact.user_id == current_user.id %>
+     <div class="contacts_inner">
+       <p class="contact_title"><%= link_to contact do %><i class="far fa-envelope-open"></i>&nbsp内容を確認する<% end %></p>
+       <p class="contact_content">送信日&nbsp<%= contact.created_at.strftime('%Y/%m/%d') %></p>
+     </div>
+     <% end %>
+    <% end %>
 </div>

@@ -3,6 +3,10 @@
   margin-bottom: 10%;
 }
 
+.words_search .search_field {
+  margin-left: 10px;
+}
+
 .clear_button {
   font-size: 10px;
   color: #ff0000;
@@ -11,6 +15,14 @@
 .clear_button:hover {
   color: #ff0000;
   text-decoration: underline;
+}
+
+.words_search select {
+  height: 40px;
+  padding: 0 10px;
+  margin: 0 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
 }
 
 input[type="search"] {
@@ -26,6 +38,7 @@ input[type="search"] {
   border: dashed 2px white;
   height: 850px;
 }
+
 .words_list_inner {
   position: relative;
 }
@@ -38,16 +51,15 @@ input[type="search"] {
   height: 650px;
 }
 
-.words_list_inner_body p {
+.words_list_inner_body .row {
   margin-top: 40px;
   margin-bottom: 0px;
-  font-size: 20px;
+  text-align: center;
 }
 
-.words_list_inner_body a {
-  padding: 0 40px;
+.words_list_inner_body p {
+  margin-bottom: 40px;
 }
-
 
 .words_list_inner_header .row {
   position: absolute;
@@ -58,14 +70,23 @@ input[type="search"] {
   background: #aedbf9;
   box-shadow: 0px 0px 0px 5px #aedbf9;
   border: dashed 2px white;
+  z-index: 2;
 }
 
-.words_list_inner a {
+.words_list_inner_header a {
   text-decoration: none;
   color: #444;
   margin: 0 auto;
   height: 50px;
   line-height: 50px;
+}
+
+.words_list_inner_body a {
+  text-decoration: none;
+  color: #444;
+  margin: 0 auto;
+  width: 100%;
+  display: block;
 }
 
 .words_list_inner a:hover {
@@ -85,6 +106,7 @@ input[type="search"] {
   text-align: right;
   font-weight: bold;
   color: #24a4fb;
+  text-shadow: 1px 1px 1px #fff;
   box-shadow: 0px 0px 0px 5px #aedbf9;
   border-top: dashed 2px white;
 }
@@ -93,14 +115,104 @@ input[type="search"] {
   margin-top: 10%;
 }
 
+.send_registered_words_of_the_day {
+  width: 100%;
+}
 
-.banner { position: relative; overflow: auto; }
-    .banner li { list-style: none; }
-        .banner ul li { float: left; }
+.send_registered_words_of_the_day .button {
+  margin-top: 30px;
+}
 
-/* #################### Responsive Design 812px以下 #################### */
-@media (max-width: 812px) {
-  // words/index.html.erb
+.send_registered_words_of_the_day .link_button {
+  border-radius: 10px;
+}
 
+.send_registered_words_of_the_day .link_button:hover {
+  background-color: #aedbf9;
+  border: #aedbf9;
+}
 
+.send_registered_words_of_the_day .to_slack a {
+  text-decoration: underline;
+  color: #444;
+}
+
+.send_registered_words_of_the_day .to_slack a:hover {
+  text-decoration: none;
+  color: #24a4fb;
+}
+
+// words/_form.html.erb
+#word_memo {
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  width: 80%;
+  height: 200px;
+  padding: 8px;
+  line-height: 20px;
+}
+
+.word_memo_confirmation {
+  word-wrap: break-word;
+}
+
+// words/show.html.erb
+.word_details {
+  padding: 10%;
+  background: #aedbf9;
+  box-shadow: 0px 0px 0px 5px #aedbf9;
+  border: dashed 2px white;
+}
+
+.word_details_inner {
+  margin-bottom: 5%;
+}
+
+.word_details_inner_title {
+  font-weight: bold;
+}
+
+.word_details .link_button {
+  border: 1px solid #fff;
+}
+
+.registered_day p {
+  width: 100%;
+  text-align: right;
+  color: #24a4fb;
+}
+
+.word_details_inner_explaination {
+  word-wrap: break-word;
+}
+
+// word/confirmation.html.erb
+.confirm_inner {
+  margin: 10%;
+  padding: 10%;
+  background: #aedbf9;
+  box-shadow: 0px 0px 0px 5px #aedbf9;
+  border: dashed 2px white;
+}
+
+.confirm_details_inner {
+  margin-bottom: 30px;
+}
+
+.confirm_details_inner_title {
+  font-weight: bold;
+}
+
+.confirm_details .register_button {
+  width: 100%;
+  text-align: right;
+}
+
+.confirm_details input.button {
+  background-color: transparent;
+  border: 1px solid #fff;
+}
+
+.confirm_details input.button:hover {
+  background-color: #24a4fb;
 }

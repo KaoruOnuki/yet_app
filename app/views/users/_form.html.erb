@@ -6,7 +6,7 @@
       <h4>頑張っているあなたは素敵です。</h4>
       <%= link_to 'さあ、もうひと頑張り。マイページに戻る', user_path(current_user), class: :link_button %>
     <% else %>
-      <h1>サインアップ</h1>
+      <h1>アカウント登録</h1>
       <p>*入力必須事項</p>
       <%= form_with(model: user, local: true) do |f| %>
         <div class="row">
@@ -52,7 +52,7 @@
         </div>
 
         <div class="row">
-          <%= f.submit "サインアップ", class: :button %>
+          <%= f.submit "アカウント登録", class: :button %>
         </div>
       <% end %>
     <% end %>

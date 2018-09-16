@@ -1,3 +1,49 @@
-// Place all the styles related to the Conversations controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.convo_item {
+  word-wrap: break-word;
+}
+
+.convo_inner {
+  width: 80%;
+  margin: 10% auto 1% auto;
+}
+
+.convo_inner .fa-user-alt {
+  font-size: 50px;
+}
+.convo_content {
+  margin-bottom: 30px;
+}
+
+.convo_list {
+  width: 60%;
+  margin: 0 auto;
+  padding: 30px;
+  border-radius: 40px 40px 40px 0px;
+  background-color: #aedbf9;
+}
+
+#message_body {
+  width: 80%;
+  height: 100px;
+  margin: 1% auto;
+}
+
+.message_button {
+  width: 80%;
+  margin: 0 auto;
+  text-align: right;
+}
+
+.message_button input.button:hover {
+  background-color: #f9f3c0;
+  color: #3a1c01;
+}
+
+.my_item {
+  text-align: right;
+}
+
+.my_list {
+  background-color: #f9f3c0;
+  border-radius: 40px 40px 0px 40px;
+}
