@@ -66,7 +66,7 @@ button.unfollow:hover {
   position: relative;
   background: image-url('PhotobyJessicaLewisonUnsplash.jpeg');
   width: 100%;
-  height: 800px;
+  height: 500px;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -148,7 +148,8 @@ button.unfollow:hover {
 // users/_form.html.erb
 .steps {
   position: relative;
-  margin: 10% 0;
+  margin: 5% 0 10% 0;
+  height: 1200px;
   background: #24a4fb;
   overflow: hidden;
 }
@@ -159,7 +160,7 @@ button.unfollow:hover {
   top: 0;
   left: 0;
   width: 150%;
-  height: 25%;
+  height: 20%;
   margin: -22%;
   -webkit-transform-origin: left center;
   -ms-transform-origin: left center;
@@ -175,7 +176,7 @@ button.unfollow:hover {
   bottom: 0;
   left: 0;
   width: 150%;
-  height: 25%;
+  height: 20%;
   margin-left: -3%;
   -webkit-transform-origin: left center;
   -ms-transform-origin: left center;
@@ -190,8 +191,6 @@ button.unfollow:hover {
 }
 
 .steps-inners {
-  display: flex;
-  justify-content: space-evenly;
   margin: 5% 10% 20% 10%;
 }
 
@@ -225,6 +224,26 @@ button.unfollow:hover {
 .step_one_title, .step_two_title, .step_three_title, .step_four_title {
   color: #fff;
   font-size: 25px;
+}
+
+.cover {
+  position: relative;
+}
+
+.step_one_inner, .step_two_inner, .step_three_inner, .step_four_inner {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-weight: bold;
+}
+
+.step_one_title, .step_two_title, .step_three_title, .step_four_title {
+  color: rgba(250, 250, 250, 0.3);
+  font-size: 3em;
+  line-height: 1em;
+  -webkit-writing-mode: vertical-rl;
+  -ms-writing-mode: tb-rl;
+  writing-mode: vertical-rl;
 }
 
 .sign_in_inner p {
@@ -353,11 +372,86 @@ input[type="email"] {
   margin-top: 10px;
 }
 
-/* #################### Responsive Design 812px以下 #################### */
-@media (max-width: 812px) {
+/* #################### Responsive Design #################### */
+@media (max-width: 1119px) {
+  .steps {
+    height: 1300px;
+  }
+
+  .steps_title {
+    margin-top: 20%;
+  }
+
+  .steps_overlay_one {
+    width: 150%;
+    height: 20%;
+    margin-left: -5%;
+  }
+
+  .steps_overlay_two {
+    width: 120%;
+    height: 15%;
+    margin-left: -5%;
+  }
+
+  .step_three {
+    margin-top: 0;
+  }
+
+  .step_four {
+    margin-top: 60px;
+  }
+
+  // users/index.html.erb
+  .other_users .row {
+    height: auto;
+  }
+
+  .other_users .item {
+  height: auto;
+  }
+
+  .other_users .content {
+  height: auto;
+  }
+}
+
+@media (max-width: 767px) {
   // users/new.html.erb
+  .features p {
+    font-size: 12px;
+  }
+
   .feature_one, .feature_two {
     width: 100%;
+  }
+
+  .steps {
+    height: 1800px;
+  }
+
+  .steps_title {
+    margin-top: 60%;
+  }
+
+  .steps_overlay_one {
+    width: 150%;
+    height: 10%;
+    margin-left: -5%;
+  }
+
+  .steps_overlay_two {
+    width: 120%;
+    height: 10%;
+    margin-left: -5%;
+  }
+
+  .steps_title h2 {
+    font-size: 20px;
+  }
+
+  .step_one, .step_two, .step_three, .step_four {
+    margin: 0;
   }
 
   // users/show.html.erb
@@ -384,20 +478,5 @@ input[type="email"] {
 
   .other_user_content .user_pic img, .other_user_content .user_pic i {
     float: right;
-  }
-}
-
-@media (max-width: 1000px) {
-  // users/index.html.erb
-  .other_users .row {
-    height: auto;
-  }
-
-  .other_users .item {
-  height: auto;
-  }
-
-  .other_users .content {
-  height: auto;
   }
 }

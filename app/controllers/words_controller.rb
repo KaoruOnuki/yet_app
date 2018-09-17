@@ -14,6 +14,13 @@ class WordsController < ApplicationController
     registered_words_of_the_day
   end
 
+  def render_test_word
+    @words = Word.select {|x| x.user_id == current_user.id}
+    if @words.present?
+      @random_word = @words.sample
+    end
+  end
+
   def to_slack
     registered_words_of_the_day
     terms_of_my_registered_words = []

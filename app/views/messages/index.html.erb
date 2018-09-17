@@ -61,9 +61,11 @@
   <% end %>
 
   <div class="column-footer">
-    <% if @over_five %>
-      <%= link_to '履歴を全て見る', '?m=all', class: :link_button %>
-    <% end %>
+    <p>
+      <% if @over_five %>
+        <%= link_to '履歴を全て見る', '?m=all', class: :link_button %>
+      <% end %>
+    </p>
     <p><%= link_to 'チャットルーム一覧に戻る', conversations_path, class: :link_button %></p>
     <p><%= link_to 'ユーザー一覧に戻る', users_path, class: :link_button %></p>
   </div>

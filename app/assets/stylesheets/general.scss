@@ -9,6 +9,34 @@ body {
 }
 
 // layouts/application.html.erb
+header {
+  position: relative;
+  background: image-url('PhotobyAnnieSprattonUnsplash.jpeg');
+  width: 100%;
+  height: 500px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.header-overlay {
+  position: absolute;
+  background: #fff;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  margin-top: 5%;
+  margin-left: -10%;
+  -webkit-transform-origin: left center;
+  -ms-transform-origin: left center;
+  transform-origin: left center;
+  -webkit-transform: rotate(5deg);
+  -ms-transform: rotate(5deg);
+  transform: rotate(5deg);
+}
+
 .top_menu {
   position: fixed;
   top: 0;
@@ -26,8 +54,9 @@ body {
   text-align: right;
 }
 
-.top_menu li a {
-  color: #444;
+.top_menu li {
+  color: #24a4fb;
+  text-shadow: 0px 0px 1px #fff;
 }
 
 .top_menu i {
@@ -39,7 +68,7 @@ body {
 .general_top {
   position: relative;
   width: 300px;
-  height: 200px;
+  height: 300px;
   overflow: hidden;
 }
 
@@ -48,15 +77,17 @@ body {
   background: rgba(36, 164, 251, 0.5);
   top: 0;
   left: 0;
-  width: 50%;
+  width: 80%;
   height: 150%;
   margin: -20%;
+  margin-left: -50%;
   -webkit-transform-origin: left center;
   -ms-transform-origin: left center;
   transform-origin: left center;
   -webkit-transform: rotate(25deg);
   -ms-transform: rotate(25deg);
   transform: rotate(25deg);
+  z-index: 2;
 }
 
 .top_overlay_two {
@@ -73,6 +104,15 @@ body {
   -webkit-transform: rotate(-15deg);
   -ms-transform: rotate(-15deg);
   transform: rotate(-15deg);
+  z-index: 3;
+}
+
+.top_logo {
+  z-index: 3;
+}
+
+.top_logo p {
+  font-size: 8px;
 }
 
 .general_top .top_logo {
@@ -90,7 +130,7 @@ body {
 footer {
   position: relative;
   overflow: hidden;
-  text-align: right;
+  text-align: center;
 }
 
 .footer_image_second_application {
@@ -134,8 +174,10 @@ footer {
 }
 
 .footer_inner {
-  margin-right: 50px;
-  margin-bottom: 50px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  padding-top: 10px;
+  font-size: 12px;
 }
 
 .link_button {
@@ -165,34 +207,105 @@ footer {
   color: #fff;
 }
 
+input#profile_picture:hover {
+  cursor: pointer;
+}
+
+.top_menu .lg_screen {
+  display: block;
+}
+
+.top_menu .lg_screen li {
+  display: block;
+}
+
+.top_menu .for_lg_screen {
+  display: inline;
+}
+
+.top_menu .sm_screen {
+  display: none;
+}
+
+.top_menu .sm_screen li {
+  display: none;
+}
+
+.top_menu .for_sm_screen {
+  display: none;
+}
+
+
 /* #################### Responsive Design 812px以下 #################### */
 @media (max-width: 812px) {
   // layouts/application.html.erb
+  .header-overlay {
+    margin-top: 40%;
+  }
+
   .top_menu {
     position: fixed;
     width: 100%;
     height: 50px;
     top: auto;
     bottom: 0;
-    background-color: #ddd;
-    font-size: 12px;
+    background-color: rgba(2, 26, 48, 0.7);
+    font-size: 10px;
   }
 
   .top_menu ul {
-    text-align: left;
+    width: 100%;
+    margin-bottom: 0;
     padding-left: 0;
+    height: 50px;
+    line-height: 50px;
   }
 
   .top_menu li {
     display: inline-block;
+    text-shadow: none;
   }
 
   .top_menu i {
     display: none;
   }
 
+  .top_menu .lg_screen {
+    display: none;
+  }
+
+  .top_menu .lg_screen li {
+    display: none;
+  }
+
+  .top_menu .for_lg_screen {
+    display: none;
+  }
+
+  .top_menu .sm_screen {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5px;
+  }
+
+  .top_menu .sm_screen li {
+    display: inline-block;
+  }
+
+  .top_menu .for_sm_screen {
+    display: inline-block;
+  }
+
+  .footer_image_application {
+    height: 300px;
+  }
+
   .footer_overlay {
     width: 200%;
-    height: 50%;
+    height: 40%;
+  }
+
+  .footer_inner {
+    margin-bottom: 50px;
   }
 }

@@ -111,6 +111,33 @@ input[type="search"] {
   border-top: dashed 2px white;
 }
 
+.words_test {
+  margin: 10%;
+  padding: 5%;
+  background: #00207a;
+  box-shadow: 0px 0px 0px 5px #00207a;
+  border: dashed 2px white;
+}
+
+.words_test {
+  color: #ddd;
+}
+
+.random_tester {
+  width: 100%;
+  text-align: right;
+}
+
+.random_tester a {
+  color: #fff;
+}
+
+#test_slider {
+  text-align: center;
+  margin: 10%;
+  color: #fff;
+}
+
 .words_to_slack {
   margin-top: 10%;
 }
@@ -215,4 +242,11 @@ input[type="search"] {
 
 .confirm_details input.button:hover {
   background-color: #24a4fb;
+}
+
+/* #################### Responsive Design #################### */
+@media (max-width: 767px) {
+  #test_slider {
+    margin: 20%;
+  }
 }

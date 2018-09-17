@@ -2,6 +2,8 @@ ja:
   activerecord:
     models:
       user: "ユーザー"
+      word: "単語"
+      contact: "お問い合わせ"
     attributes:
       user:
         name: "名前"
@@ -9,17 +11,11 @@ ja:
         password: "パスワード"
         password_confirmation: "確認用パスワード"
         profile_picture: "プロフィール用画像"
-        target_of_the_day: "1日のターゲット"
-        target_of_the_week: "1週間のターゲット"
-        target_of_the_month: "1ヶ月のターゲット"
-    models:
-      word: "単語"
-    attributes:
+        target_of_the_day: "1日の目標単語数"
+        target_of_the_week: "1週間の目標単語数"
+        target_of_the_month: "1ヶ月の目標単語数"
       word:
         term: "単語"
         memo: "意味、説明"
-    models:
-      contact: "お問い合わせ"
-    attributes:
       contact:
         content: "内容"

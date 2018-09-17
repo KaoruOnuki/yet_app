@@ -41,34 +41,34 @@
       </tr>
 
       <tr class="row">
-        <td class="col-md-12 col-lg-5 title">1日のターゲット</td>
+        <td class="col-md-12 col-lg-5 title">1日の目標単語数</td>
         <td class="col-md-12 col-lg-7">
         <% if @user.target_of_the_day.present? %>
           <%= link_to @user.target_of_the_day, edit_user_path(@user.id)  %>
         <% else %>
-          <%= link_to "ターゲットが設定されていません", edit_user_path(@user.id) %>
+          <%= link_to "目標単語数が設定されていません", edit_user_path(@user.id) %>
         <% end %>
         </td>
       </tr>
 
       <tr class="row">
-        <td class="col-md-12 col-lg-5 title">1週間のターゲット</td>
+        <td class="col-md-12 col-lg-5 title">1週間の目標単語数</td>
         <td class="col-md-12 col-lg-7">
         <% if @user.target_of_the_week.present? %>
           <%= link_to @user.target_of_the_week, edit_user_path(@user.id) %>
         <% else %>
-          <%= link_to "ターゲットが設定されていません", edit_user_path(@user.id) %>
+          <%= link_to "目標単語数が設定されていません", edit_user_path(@user.id) %>
         <% end %>
         </td>
       </tr>
 
       <tr class="row">
-        <td class="col-md-12 col-lg-5 title">1ヶ月のターゲット</td>
+        <td class="col-md-12 col-lg-5 title">1ヶ月の目標単語数</td>
         <td class="col-md-12 col-lg-7">
         <% if @user.target_of_the_month.present? %>
           <%= link_to @user.target_of_the_month, edit_user_path(@user.id) %>
         <% else %>
-          <%= link_to "ターゲットが設定されていません", edit_user_path(@user.id) %>
+          <%= link_to "目標単語数が設定されていません", edit_user_path(@user.id) %>
         <% end %>
         </td>
       </tr>
@@ -81,7 +81,7 @@
 
   <div class="profile_charts row">
     <div class="chart">
-      <h4>1日のターゲット</h4>
+      <h4>1日の目標単語数</h4>
       <%= pie_chart @chart_data_of_the_day, donut: true, height: "200px", refresh: 60, colors: ["#24a4fb", "#ddd"] %>
       <% if @user.target_of_the_day.present? && @user.target_of_the_day <= @number_of_words_today %>
         <h5>目標達成おめでとう！<br>頑張っていますね</h5>
@@ -89,7 +89,7 @@
     </div>
 
     <div class="chart">
-      <h4>1週間のターゲット</h4>
+      <h4>1週間の目標単語数</h4>
       <%= pie_chart @chart_data_of_the_week, donut: true, height: "200px", refresh: 60, colors: ["#24a4fb", "#ddd"] %>
       <% if @user.target_of_the_week.present? && @user.target_of_the_week <= @number_of_words_this_week%>
         <h5>目標達成おめでとう！<br>頑張っていますね</h5>
@@ -97,7 +97,7 @@
     </div>
 
     <div class="chart">
-      <h4>1ヶ月のターゲット</h4>
+      <h4>1ヶ月の目標単語数</h4>
       <%= pie_chart @chart_data_of_the_month, donut: true, height: "200px", refresh: 60, colors: ["#24a4fb", "#ddd"] %>
       <% if @user.target_of_the_month.present? && @user.target_of_the_month <= @number_of_words_this_month %>
         <h5>目標達成おめでとう！<br>頑張っていますね</h5>

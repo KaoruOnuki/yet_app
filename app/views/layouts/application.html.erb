@@ -10,25 +10,40 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/css?family=Federo|Noto+Serif+JP" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <%= favicon_link_tag 'favicon.ico' %>
   </head>
 
   <body>
     <header>
       <div class="top_menu">
-        <ul>
         <% if logged_in? %>
-          <li><%= link_to_unless_current 'HOME', user_path(@user) %><i class="fas fa-circle"></i></li>
-          <li><%= link_to_unless_current "単語帳", words_path %><i class="fas fa-circle"></i></li>
-          <li><%= link_to_unless_current "ユーザー一覧", users_path %><i class="fas fa-circle"></i></li>
-          <li><%= link_to_unless_current "チャットルーム", conversations_path %><i class="fas fa-circle"></i></li>
-          <li><%= link_to_unless_current "プロフィール編集", edit_user_path(@user.id) %><i class="fas fa-circle"></i></li>
-          <li><%= link_to_unless_current "お問い合わせ", new_contact_path %><i class="fas fa-circle"></i></li>
-          <li><%= link_to_unless_current "ログアウト", session_path(current_user.id), method: :delete %><i class="fas fa-circle"></i></li>
+          <ul class="lg_screen">
+            <li><%= link_to_unless_current 'HOME', user_path(@user), class: :for_lg_screen, style: "color:#444;" %><i class="fas fa-angle-left"></i></li>
+            <li><%= link_to_unless_current "単語帳", words_path, class: :for_lg_screen, style: "color:#444;" %><i class="fas fa-angle-left"></i></li>
+            <li><%= link_to_unless_current "ユーザー一覧", users_path, class: :for_lg_screen, style: "color:#444;" %><i class="fas fa-angle-left"></i></li>
+            <li><%= link_to_unless_current "チャットルーム", conversations_path, class: :for_lg_screen, style: "color:#444;" %><i class="fas fa-angle-left"></i></li>
+            <li><%= link_to_unless_current "プロフィール編集", edit_user_path(@user.id), class: :for_lg_screen, style: "color:#444;" %><i class="fas fa-angle-left"></i></li>
+            <li><%= link_to_unless_current "お問い合わせ", new_contact_path, class: :for_lg_screen, style: "color:#444;" %><i class="fas fa-angle-left"></i></li>
+            <li><%= link_to "ログアウト", session_path(current_user.id), method: :delete, title: "ログアウトの確認", data: {confirm: 'お疲れ様でした。本当にログアウトしますか？', cancel: "やめる", commit: "ログアウトする"}, class: :for_lg_screen, style: "color:#444;" %><i class="fas fa-angle-left"></i></li>
+          </ul>
+
+          <ul class="sm_screen">
+            <li><%= link_to_unless_current 'HOME', user_path(@user), class: :for_sm_screen, style: "color:#fff;" %></li>
+            <li><%= link_to_unless_current "単語帳", words_path, class: :for_sm_screen, style: "color:#fff;" %></li>
+            <li><%= link_to_unless_current "ユーザー", users_path, class: :for_sm_screen, style: "color:#fff;" %></li>
+            <li><%= link_to_unless_current "チャット", conversations_path, class: :for_sm_screen, style: "color:#fff;" %></li>
+            <li><%= link_to_unless_current "プロフィール", edit_user_path(@user.id), class: :for_sm_screen, style: "color:#fff;" %></li>
+            <li><%= link_to_unless_current "お問い合わせ", new_contact_path, class: :for_sm_screen, style: "color:#fff;" %></li>
+            <li><%= link_to "ログアウト", session_path(current_user.id), method: :delete, title: "ログアウトの確認", data: {confirm: 'お疲れ様でした。本当にログアウトしますか？', cancel: "やめる", commit: "ログアウトする"}, class: :for_sm_screen, style: "color:#fff;" %></li>
+          </ul>
         <% else %>
-          <li><%= link_to "サインアップ", new_user_path %><i class="fas fa-circle"></i></li>
-          <li><%= link_to "ログイン", new_session_path %><i class="fas fa-circle"></i></li>
+          <ul class="lg_screen">
+            <li><%= link_to_unless_current "TOPページに戻る", root_path, class: :for_lg_screen, style: "color:#444;" %><i class="fas fa-angle-left"></i></li>
+          </ul>
+          <ul class="sm_screen">
+            <li><%= link_to_unless_current "TOPページに戻る", root_path, class: :for_sm_screen, style: "color:#fff;" %></li>
+          </ul>
         <% end %>
-        </ul>
       </div>
 
       <div class="general_top">
@@ -39,11 +54,16 @@
         </div>
 
         <div class="top_logo">
-          LOGO
           <% if logged_in? %>
-            <%= link_to image_tag('PhotobyTimWrightonUnsplash.jpeg', { border: '0', alt: 'マイページ'}), user_path(current_user.id) %>
+            <%= link_to image_tag('logo_white.png', { border: '0', alt: 'マイページ', width: "30%"}), user_path(current_user.id) %>
+          <% else %>
+            <%= image_tag('logo_white.png', { border: '0', width: "30%"}) %>
           <% end %>
+          <p>YET.</p>
         </div>
+      </div>
+
+      <div class="header-overlay">
       </div>
 
       <% flash.each do |key, value| %>

@@ -63,25 +63,10 @@
     <p class="words_list_footer">登録単語数&nbsp全<%= @words.size %>個</p>
   </div>
 
-  <div class="words_test">
-    <h1>単語テスト</h1>
-    <div class="words_test_inner">
-      <% if @words.present? %>
-        <div class="random_tester">
-          <%= @random_word.term %>
-          <p>あとでカバーかけてあげるjavascript
-            <%= @random_word.memo %>
-          </p>
-        </div>
-      <% end %>
-    </div>
-  </div>
-
-
   <div class="words_to_slack">
-    <h1>Slackで共有</h1>
+    <h1>Slackで共有する</h1>
     <div class="send_registered_words_of_the_day">
-      <p class="to_slack">今日登録した単語をslackに送りましょう（参照チャンネル&nbsp<%= link_to  '#test_kaoru2' ,'https://diveintocode.slack.com/messages/CCA5K407M/details/', target: "_new" %>）</p>
+      <p class="to_slack">今日登録した単語をslackに送りましょう。(注：卒業課題用のslackチャンネルは&nbsp<%= link_to  '#test_kaoru2' ,'https://diveintocode.slack.com/messages/CCA5K407M/details/', target: "_new" %>です）</p>
         <% @registered_words_of_the_day.each do |my_registered_word| %>
           <% if my_registered_word.user_id == current_user.id %>
             <% if my_registered_word.present? %>
@@ -94,6 +79,23 @@
           <i class="fas fa-exclamation-triangle"></i>今日登録した単語はありません。
         <% end %>
         <%= button_to 'Slackに送る', button_path, class: :button, method: :get, title: "Slackへの送信の確認", data: {confirm: '本当に送りますか？', cancel: "やめる", commit: "送る"} %>
+    </div>
+  </div>
+
+  <div class="words_test">
+    <h5>英単語スライダー</h5>
+    <div class="words_test_inner">
+      <% if @words.present? %>
+        <div class="random_tester">
+          <div id="test_slider">
+            <h1><%= @random_word.term %></h1>
+            <p><%= link_to "詳細を確認", word_path(@random_word) %></p>
+          </div>
+          <%= link_to "次の単語", render_test_word_path, remote: true, class: :link_button %>
+        </div>
+      <% else %>
+        <p><i class="fas fa-exclamation-triangle"></i>現在登録している単語はありません。</p>
+      <% end %>
     </div>
   </div>
 </div>

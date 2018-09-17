@@ -10,6 +10,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/css?family=Federo|Noto+Serif+JP" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <%= favicon_link_tag 'favicon.ico' %>
   </head>
 
   <body>
@@ -22,18 +23,29 @@
         </div>
 
         <div class="top_logo">
-          LOGO
-          <%#= image_tag "logo" %>
+          <%= image_tag('logo_white.png', { border: '0', width: "70%"}) %>
+          <h5>YET.</h5>
         </div>
       </div>
 
       <div class="top_menu">
-        <ul>
-        <% unless logged_in? %>
-          <li><%= link_to_unless_current "アカウント登録", new_user_path %><i class="fas fa-circle"></i></li>
-          <li><%= link_to_unless_current "ログイン", new_session_path %><i class="fas fa-circle"></i></li>
+        <% if logged_in? %>
+          <ul class="lg_screen">
+            <li><%= link_to_unless_current 'マイページ', user_path(current_user), class: :for_lg_screen, style: "color:#444;" %><i class="fas fa-angle-left"></i></li>
+          </ul>
+          <ul class="sm_screen">
+            <li><%= link_to_unless_current 'マイページ', user_path(current_user), class: :for_sm_screen, style: "color:#fff;" %></li>
+          </ul>
+        <% else %>
+          <ul class="lg_screen">
+            <li><%= link_to_unless_current "アカウント登録", root_path, class: :for_lg_screen, style: "color:#444;" %><i class="fas fa-angle-left"></i></li>
+            <li><%= link_to_unless_current "ログイン", new_session_path, class: :for_lg_screen, style: "color:#444;" %><i class="fas fa-angle-left"></i></li>
+          </ul>
+          <ul class="sm_screen">
+            <li><%= link_to_unless_current "アカウント登録", root_path, class: :for_sm_screen, style: "color:#fff;" %></li>
+            <li><%= link_to_unless_current "ログイン", new_session_path, class: :for_sm_screen, style: "color:#fff;" %></li>
+          </ul>
         <% end %>
-        </ul>
       </div>
 
       <% flash.each do |key, value| %>

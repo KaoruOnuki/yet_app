@@ -40,7 +40,7 @@ class UsersController < ApplicationController
         @chart_data_of_the_day = [["今日登録した単語数：#{@number_of_words_today}単語", @number_of_words_today], ["今日の目標単語数：#{@user.target_of_the_day}単語", 0]]
       end
     else
-      @chart_data_of_the_day = [["今日登録した単語数：#{@number_of_words_today}単語", @number_of_words_today], ["ターゲットが設定されていません", 0]]
+      @chart_data_of_the_day = [["今日登録した単語数：#{@number_of_words_today}単語", @number_of_words_today], ["目標単語数が設定されていません", 0]]
     end
 
     if @user.target_of_the_week.present?
@@ -51,7 +51,7 @@ class UsersController < ApplicationController
         @chart_data_of_the_week = [["今週登録した単語数：#{@number_of_words_this_week}単語", @number_of_words_this_week], ["今週の目標単語数：#{@user.target_of_the_week}単語", 0]]
       end
     else
-      @chart_data_of_the_week = [["今週登録した単語数：#{@number_of_words_this_week}単語", @number_of_words_this_week], ["ターゲットが設定されていません", 0]]
+      @chart_data_of_the_week = [["今週登録した単語数：#{@number_of_words_this_week}単語", @number_of_words_this_week], ["目標単語数が設定されていません", 0]]
     end
 
     if @user.target_of_the_month.present?
@@ -62,7 +62,7 @@ class UsersController < ApplicationController
         @chart_data_of_the_month = [["今月登録した単語数：#{@number_of_words_this_month}単語", @number_of_words_this_month], ["今月の目標単語数：#{@user.target_of_the_month}単語", 0]]
       end
     else
-      @chart_data_of_the_month = [["今月登録した単語数：#{@number_of_words_this_month}単語", @number_of_words_this_month], ["ターゲットが設定されていません", 0]]
+      @chart_data_of_the_month = [["今月登録した単語数：#{@number_of_words_this_month}単語", @number_of_words_this_month], ["目標単語数が設定されていません", 0]]
     end
   end
 
