@@ -16,7 +16,7 @@
       <div class="other_user_content row">
         <div class="user_pic col-md-12 col-lg-3">
           <% if user.profile_picture.url.present? %>
-            <%= image_tag(user.profile_picture.url, { border: '0', alt: 'プロフィール画像', height: 50 }) %>
+            <%= image_tag(user.profile_picture.url, { border: '0', alt: 'プロフィール画像', height: 80 }) %>
           <% else %>
             <i class="fas fa-user-alt"></i>
           <% end %>

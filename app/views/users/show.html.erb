@@ -4,7 +4,13 @@
   </div>
 
   <div class="profile_picture">
-    <%= link_to image_tag(@user.profile_picture.url, { border: '0', alt: 'プロフィール画像'}), edit_user_path(@user.id) if @user.profile_picture.url.present? %>
+    <% if @user.profile_picture.url.present? %>
+      <%= link_to edit_user_path(@user.id) do %>
+        <%= image_tag(@user.profile_picture.url, { border: '0', alt: 'プロフィール画像', width: 250 }) %>
+      <% end %>
+    <% else %>
+      <i class="fas fa-user-alt"></i>
+    <% end %>
   </div>
 
   <div class="profile_top">

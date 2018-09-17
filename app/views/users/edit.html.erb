@@ -7,7 +7,9 @@
       <%= f.label "プロフィール用画像" %>
       <%= f.file_field :profile_picture, id: :profile_picture %>
       <%= f.hidden_field :profile_picture_cache %>
-      <%= image_tag(@user.profile_picture.url) if @user.profile_picture.url.present? %>
+      <% if @user.profile_picture.url.present? %>
+        <%= image_tag(@user.profile_picture.url, { border: '0', alt: 'プロフィール画像', height: 200 }) %>
+      <% end %>
     </div>
 
     <div class="row">
