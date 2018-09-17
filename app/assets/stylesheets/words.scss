@@ -244,6 +244,14 @@ input[type="search"] {
   background-color: #24a4fb;
 }
 
+.contact_content .link_button {
+  border: 1px solid #fff;
+}
+
+.contact_content .link_button:hover {
+  background-color: #444;
+}
+
 /* #################### Responsive Design #################### */
 @media (max-width: 767px) {
   #test_slider {
