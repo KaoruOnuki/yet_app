@@ -1,7 +1,13 @@
 class ProfilepictureUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
-  storage :file
-  # storage :fog
+  if Rails.env.development?
+    storage :file
+  elsif Rails.env.test?
+    storage :file
+  else
+    storage :fog
+  end
+  
   process :resize_to_limit => [500, nil]
 
   def store_dir
