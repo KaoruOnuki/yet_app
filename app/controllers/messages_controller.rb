@@ -7,6 +7,7 @@ class MessagesController < ApplicationController
 
   def index
     @messages = @conversation.messages
+    redirect_if_wrong_user_for_message
     if @messages.length > 5
       @over_five = true
       @messages = @messages[-5..-1]
@@ -39,5 +40,9 @@ class MessagesController < ApplicationController
 
   def message_params
     params.require(:message).permit(:body, :user_id)
+  end
+
+  def redirect_if_wrong_user_for_message
+    redirect_to new_session_path unless @conversation.sender_id == current_user.id || @conversation.recipient_id == current_user.id
   end
 end

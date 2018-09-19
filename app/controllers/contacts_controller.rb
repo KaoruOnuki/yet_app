@@ -8,6 +8,7 @@ class ContactsController < ApplicationController
   end
 
   def show
+    redirect_if_wrong_user_for_contact
   end
 
   def new
@@ -46,5 +47,9 @@ class ContactsController < ApplicationController
 
   def contact_params
     params.require(:contact).permit(:name, :email, :content)
+  end
+
+  def redirect_if_wrong_user_for_contact
+    redirect_to new_session_path if @contact.user != current_user
   end
 end
