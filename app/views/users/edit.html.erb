@@ -1,5 +1,14 @@
 <div class="container edit_profile">
   <h1>プロフィール編集</h1>
+  <% if @user.errors.any? %>
+    <div id = "error_explanation">
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
   <div class="edit_profile_inner">
   <%= form_with(model: @user, local: true) do |f| %>

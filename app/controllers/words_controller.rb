@@ -7,6 +7,7 @@ class WordsController < ApplicationController
     @words = Word.select {|x| x.user_id == current_user.id}
     @q = Word.ransack(params[:q])
     @search_results = @q.result(distinct: true)
+    start_date_cannot_be_later_than_finish_date
 
     if @words.present?
       @random_word = @words.sample
@@ -100,4 +101,11 @@ class WordsController < ApplicationController
     EOS
     Slack.chat_postMessage text: text, username: "単語登録のお知らせ", channel: "#test_kaoru2"
   end
+
+  def start_date_cannot_be_later_than_finish_date
+    start_date = [@q.created_at_gteq(1i), @q.created_at_gteq(2i), @q.created_at_gteq(3i)]
+    finish_date = [@q.created_at_lteq_end_of_day(1i), @q.created_at_lteq_end_of_day(2i), @q.created_at_lteq_end_of_day(3i)]
+    flash[:notice] = "終了日は開始日より前に設定してください。" if start_date.join > finish_date.join
+  end
+
 end
