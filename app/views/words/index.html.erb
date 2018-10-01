@@ -38,10 +38,15 @@
     <% end %>
   </div>
 
+
+  <h1>登録した単語一覧</h1>
   <div class="words_list">
     <div class="words_list_inner">
       <div class="words_list_inner_header">
-        <p class="row"><%= sort_link(@q, :term, '登録した単語一覧', default_order: :desc) %></p>
+        <p class="row">
+          <%= sort_link(@q, :term, 'abc順並び替え', default_order: :asc) %>
+          <%= sort_link(@q, :created_at, '登録日時順並び替え', default_order: :asc) %>
+        </p>
       </div>
 
       <div class="words_list_inner_body">

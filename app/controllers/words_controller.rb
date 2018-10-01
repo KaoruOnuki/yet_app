@@ -6,6 +6,7 @@ class WordsController < ApplicationController
   def index
     @words = Word.select {|x| x.user_id == current_user.id}
     @q = Word.ransack(params[:q])
+    @q.sorts = 'id asc' if @q.sorts.empty?
     @search_results = @q.result(distinct: true)
     start_date_cannot_be_later_than_finish_date
 
