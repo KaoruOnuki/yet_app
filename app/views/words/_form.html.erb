@@ -1,4 +1,4 @@
-<%= form_with(model: @word, local: true, url: choose_new_or_edit) do |f| %>
+<%= form_with(model: @word, local: true, url: choose_new_or_edit, html: {id: 'word_form', class: 'form'}) do |f| %>
   <% if @word.errors.any? %>
     <div id = "error_explanation">
       <ul>
@@ -11,15 +11,15 @@
 
   <div class="word_term">
     <%= f.label "単語" %>
-    <%= f.text_field :term %>
+    <%= f.text_field :term, id: :word_term_registration, maxlength: 50 %>
   </div>
 
   <div class="word_memo">
     <%= f.label "意味、説明" %>
-    <%= f.text_area :memo %>
+    <%= f.text_area :memo, id: :word_memo_registration, maxlength: 300 %>
   </div>
 
-  <%= f.submit "登録", class: :button %>
+  <%= f.submit "登録", class: :button, id: :word_registration_button %>
 <% end %>
 
 <div class="column-footer">
