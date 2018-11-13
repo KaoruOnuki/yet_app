@@ -89,7 +89,7 @@
   </div>
 
   <div class="words_test">
-    <h5>英単語スライダー</h5>
+    <h5>単語スライダー</h5>
     <div class="words_test_inner">
       <% if @words.present? %>
         <div class="random_tester">
@@ -97,7 +97,7 @@
             <h1><%= @random_word.term %></h1>
             <p><%= link_to "詳細を確認", word_path(@random_word) %></p>
           </div>
-          <%= link_to "次の単語", render_test_word_path, remote: true, class: :link_button %>
+          <%= link_to "次の単語", render_test_word_path, remote: true, class: :link_button, id: :nextWordBtn %>
         </div>
       <% else %>
         <p><i class="fas fa-exclamation-triangle"></i>現在登録している単語はありません。</p>
@@ -105,3 +105,22 @@
     </div>
   </div>
 </div>
+
+
+<script>
+// 単語スライダーのタイマー機能
+  $(function() {
+    var nextWordBtn = document.getElementById('nextWordBtn');
+    var timer;
+
+    nextWordBtn.addEventListener('click', function() {
+      clearTimeout(timer);
+
+      timer = setTimeout(sliderTimer, 5000);
+      function sliderTimer(timer) {
+       alert('タイムアウト');
+      };
+    });
+  });
+
+</script>

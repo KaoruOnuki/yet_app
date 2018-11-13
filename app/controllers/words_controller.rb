@@ -4,7 +4,7 @@ class WordsController < ApplicationController
   before_action :set_word, only: [:show, :edit, :update, :destroy]
 
   def index
-    @words = Word.select {|x| x.user_id == current_user.id}
+    @words = set_user.words.all
     @q = Word.ransack(params[:q])
     @q.sorts = 'id asc' if @q.sorts.empty?
     @search_results = @q.result(distinct: true)
@@ -17,7 +17,7 @@ class WordsController < ApplicationController
   end
 
   def render_test_word
-    @words = Word.select {|x| x.user_id == current_user.id}
+    @words = set_user.words.all
     if @words.present?
       @random_word = @words.sample
     end
