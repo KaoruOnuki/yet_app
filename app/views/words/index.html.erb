@@ -91,15 +91,16 @@
   <div>
     <h1>応用編</h1>
     <p>単語スライダーを使って今までの単語を総復習しましょう。</p>
-    <p>遊び方：下の「切り替え時間を設定」から単語が切り替わるタイミングを設定してタイムアタックを行う。（初期値は5秒）</p>
-    <p>切り替え時間を設定</p>
+    <p>遊び方：下の「切り替え時間を設定」から単語が切り替わるタイミングを設定してタイムアタックを行う。</p>
+    <button id="setTimeBtn" class="button">切り替え時間を設定</button>
+
     <div class="words_test">
       <h5>単語スライダー</h5>
       <div class="words_test_inner">
         <% if @words.present? %>
           <div class="random_tester">
             <div id="test_slider">
-              <p>時間を設定</p>
+              <p>ARE YOU READY?</p>
             </div>
             <%= link_to "スタート", render_test_word_path, remote: true, class: :link_button, id: :nextWordBtn %>
           </div>
@@ -114,25 +115,42 @@
 <script>
 // 単語スライダーのタイマー機能
   $(function() {
-    var nextWordBtn = document.getElementById('nextWordBtn');
-    var timer;
+    // ユーザーがタイマーの長さを指定する
+    var setTimeBtn = document.getElementById('setTimeBtn');
+    setTime = 5;
+    setTimeBtn.addEventListener('click', function() {
+      setTime = prompt('半角英数で時間を指定してください（秒）。初期値は5秒に設定してあります','5');
+      // 入力制限
+      if((setTime == "") || (setTime == null)) {
+        setTime = 5;
+      } else if(setTime.match(/^[1-9]+$/)){
+        // promptでとると数字でも文字列として受け取ってるから数列型にする
+        setTime = parseFloat(setTime);
+      } else {
+        alert("半角数字のみを入力してください。小数や分数、全角入力は受け付けません。");
+        setTime = 5;
+      }
+    });
 
+    var nextWordBtn = document.getElementById('nextWordBtn');
+    // スライダーが始まったら'スタートボタン'を'次の単語へ'に変えて、指定時間ごとにタイマーをリセットして終了の文字に色をつける
+    var timer;
     nextWordBtn.addEventListener('click', function() {
       clearTimeout(timer);
 
-      timer = setTimeout(sliderTimer, 5000+1000);
+      timer = setTimeout(sliderTimer, (setTime+1)*1000+1000);
       function sliderTimer(timer) {
         var showTime = document.getElementById('showTime');
         showTime.style.color = "red";
       };
       // ボタンの書き換え
-      nextWordBtn.innerHTML = '次の単語';
+      nextWordBtn.innerHTML = '次の単語へ';
     });
 
     // 残り時間を表示する
     var count;
     nextWordBtn.addEventListener('click', function() {
-      var timeRemain = 5+1;
+      var timeRemain = setTime+1;
       var timeRemainMsg = document.createElement('div');
       timeRemainMsg.setAttribute('id', 'showTime');
       var parent = nextWordBtn.parentElement;
@@ -143,15 +161,24 @@
       function startCounting(count) {
         timeRemain--;
         timeRemainMsg.innerHTML = '制限時間:' + timeRemain + '秒';
-        if (timeRemain <= 0) {
+        if (timeRemain == 0) {
+          timeRemainMsg.innerHTML = '制限時間:0秒';
+          clearInterval(count);
+        } else if (timeRemain < 0) {
           timeRemainMsg.innerHTML = '制限時間終了';
           clearInterval(count);
         }
 
-        // 途中で次の単語ボタンを押した時、カウントを中止して残り時間を非表示にする。
+        // 途中で次の単語ボタンや切り替え時間設定ボタンを押した時、カウントを中止して残り時間を非表示にする。
         nextWordBtn.addEventListener('click', function(count) {
           timeRemainMsg.remove();
           clearInterval(count);
+        });
+
+        setTimeBtn.addEventListener('click', function(count) {
+          timeRemainMsg.remove();
+          clearInterval(count);
+          nextWordBtn.innerHTML = 'もう一度始める';
         });
       };
     });
