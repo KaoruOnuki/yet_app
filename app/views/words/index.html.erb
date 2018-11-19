@@ -88,24 +88,28 @@
     </div>
   </div>
 
-  <div class="words_test">
-    <h5>単語スライダー</h5>
-    <div class="words_test_inner">
-      <% if @words.present? %>
-        <div class="random_tester">
-          <div id="test_slider">
-            <h1><%= @random_word.term %></h1>
-            <p><%= link_to "詳細を確認", word_path(@random_word) %></p>
+  <div>
+    <h1>応用編</h1>
+    <p>単語スライダーを使って今までの単語を総復習しましょう。</p>
+    <p>遊び方：下の「切り替え時間を設定」から単語が切り替わるタイミングを設定してタイムアタックを行う。（初期値は5秒）</p>
+    <p>切り替え時間を設定</p>
+    <div class="words_test">
+      <h5>単語スライダー</h5>
+      <div class="words_test_inner">
+        <% if @words.present? %>
+          <div class="random_tester">
+            <div id="test_slider">
+              <p>時間を設定</p>
+            </div>
+            <%= link_to "スタート", render_test_word_path, remote: true, class: :link_button, id: :nextWordBtn %>
           </div>
-          <%= link_to "次の単語", render_test_word_path, remote: true, class: :link_button, id: :nextWordBtn %>
-        </div>
-      <% else %>
-        <p><i class="fas fa-exclamation-triangle"></i>現在登録している単語はありません。</p>
-      <% end %>
+        <% else %>
+          <p><i class="fas fa-exclamation-triangle"></i>現在登録している単語はありません。</p>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
-
 
 <script>
 // 単語スライダーのタイマー機能
@@ -116,9 +120,39 @@
     nextWordBtn.addEventListener('click', function() {
       clearTimeout(timer);
 
-      timer = setTimeout(sliderTimer, 5000);
+      timer = setTimeout(sliderTimer, 5000+1000);
       function sliderTimer(timer) {
-       alert('タイムアウト');
+        var showTime = document.getElementById('showTime');
+        showTime.style.color = "red";
+      };
+      // ボタンの書き換え
+      nextWordBtn.innerHTML = '次の単語';
+    });
+
+    // 残り時間を表示する
+    var count;
+    nextWordBtn.addEventListener('click', function() {
+      var timeRemain = 5+1;
+      var timeRemainMsg = document.createElement('div');
+      timeRemainMsg.setAttribute('id', 'showTime');
+      var parent = nextWordBtn.parentElement;
+      parent.insertBefore(timeRemainMsg, null);
+
+      // 1秒ずつ残り時間を減らしていく
+      count = setInterval(startCounting, 1000);
+      function startCounting(count) {
+        timeRemain--;
+        timeRemainMsg.innerHTML = '制限時間:' + timeRemain + '秒';
+        if (timeRemain <= 0) {
+          timeRemainMsg.innerHTML = '制限時間終了';
+          clearInterval(count);
+        }
+
+        // 途中で次の単語ボタンを押した時、カウントを中止して残り時間を非表示にする。
+        nextWordBtn.addEventListener('click', function(count) {
+          timeRemainMsg.remove();
+          clearInterval(count);
+        });
       };
     });
   });
