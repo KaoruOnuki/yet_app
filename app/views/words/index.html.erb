@@ -91,7 +91,7 @@
   <div>
     <h1>応用編</h1>
     <p>単語スライダーを使って今までの単語を総復習しましょう。</p>
-    <p>遊び方：下の「切り替え時間を設定」から単語が切り替わるタイミングを設定してタイムアタックを行う。</p>
+    <p>下の「切り替え時間を設定」から何秒後ごとに単語を切り替えたいか指定して早速始めましょう。</p>
     <button id="setTimeBtn" class="button">切り替え時間を設定</button>
 
     <div class="words_test">
@@ -102,7 +102,7 @@
             <div id="test_slider">
               <p>ARE YOU READY?</p>
             </div>
-            <%= link_to "スタート", render_test_word_path, remote: true, class: :link_button, id: :nextWordBtn %>
+            <%= link_to "スタート", test_word_path, remote: true, class: :link_button, id: :nextWordBtn %>
           </div>
         <% else %>
           <p><i class="fas fa-exclamation-triangle"></i>現在登録している単語はありません。</p>
@@ -123,7 +123,11 @@
       // 入力制限
       if((setTime == "") || (setTime == null)) {
         setTime = 5;
-      } else if(setTime.match(/^[1-9]+$/)){
+      } else if(setTime.match(/^[0-9]+$/)){
+        if(setTime == 0) {
+          alert("半角数字のみを入力してください。小数や分数、全角入力は受け付けません。");
+          setTime = 5;
+        }
         // promptでとると数字でも文字列として受け取ってるから数列型にする
         setTime = parseFloat(setTime);
       } else {

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :words do
     post :confirm, on: :collection
   end
-  get '/render_test_word', to: 'words#render_test_word'
+  get '/test_word', to: 'words#test_word'
   resources :users
   resources :sessions
   resources :contacts

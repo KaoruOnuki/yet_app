@@ -9,14 +9,11 @@ class WordsController < ApplicationController
     @q.sorts = 'id asc' if @q.sorts.empty?
     @search_results = @q.result(distinct: true)
     start_date_cannot_be_later_than_finish_date
-
-    if @words.present?
-      @random_word = @words.sample
-    end
     registered_words_of_the_day
   end
 
-  def render_test_word
+  def test_word
+    @a = Word.find_by(id: params[:id])
     @words = set_user.words.all
     if @words.present?
       @random_word = @words.sample
